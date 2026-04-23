@@ -19,28 +19,22 @@
 	></div>
 
 	<div class="relative z-10 mx-auto flex w-full max-w-3xl flex-col items-center text-center">
-		<!-- Badge -->
-		<div class="animate-fade-in-up">
-			<div
-				class="mb-6 inline-flex items-center gap-2 rounded-full border border-graphite-600 bg-graphite-700/60 px-4 py-1.5 text-xs font-medium tracking-wider text-pastel-300 uppercase backdrop-blur-sm sm:text-sm"
-			>
-				<span class="inline-block h-2 w-2 animate-pulse rounded-full bg-pastel-300" aria-hidden="true"></span>
-				Software Engineer
-			</div>
-		</div>
-
 		<!-- Heading -->
 		<h1
 			class="animate-fade-in-up text-4xl leading-tight font-extrabold tracking-tight text-graphite-50 delay-100 sm:text-5xl md:text-7xl"
 		>
-			Hi, I'm <span class="bg-gradient-to-r from-pastel-300 to-pastel-400 bg-clip-text text-transparent">Zakir</span>
+			Hi, I'm <span
+				class="bg-gradient-to-r from-pastel-300 to-pastel-400 bg-clip-text text-transparent"
+				>Zakir</span
+			>
 		</h1>
 
 		<!-- Subtitle -->
 		<p
 			class="animate-fade-in-up mt-4 max-w-lg text-base leading-relaxed font-light text-graphite-300 delay-200 sm:mt-6 sm:text-lg md:text-xl"
 		>
-			A seasoned software engineer with 7+ years of experience building scalable backend systems and full-stack applications.
+			A seasoned software engineer with 7+ years of experience building scalable backend systems and
+			full-stack applications.
 		</p>
 
 		<!-- Tech Pills -->
@@ -82,7 +76,9 @@
 		</div>
 
 		<!-- Scroll indicator -->
-		<div class="animate-fade-in-up mt-16 flex flex-col items-center gap-2 text-graphite-400 delay-600">
+		<div
+			class="animate-fade-in-up mt-16 flex flex-col items-center gap-2 text-graphite-400 delay-600"
+		>
 			<span class="text-xs tracking-widest uppercase">Scroll to explore</span>
 			<svg
 				class="animate-float h-5 w-5 text-pastel-300"
