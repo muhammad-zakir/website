@@ -1,0 +1,21 @@
+{
+	"name": "Zakir — Software Engineer",
+	"short_name": "Zakir",
+	"description": "Personal portfolio and tools by Muhammad Zakir — Software Engineer with 7+ years of experience.",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#2B2B2B",
+	"theme_color": "#2B2B2B",
+	"icons": [
+		{
+			"src": "/icon-192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "/icon-512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	]
+}
