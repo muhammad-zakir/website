@@ -2,7 +2,14 @@
 	import SeoHead from '$lib/components/SeoHead.svelte';
 	import ScrollReveal from '$lib/components/ui/ScrollReveal.svelte';
 	import GlassCard from '$lib/components/ui/GlassCard.svelte';
+	import SearchableSelect from '$lib/components/ui/SearchableSelect.svelte';
 	import { COUNTRIES, DEFAULT_PHONE_COUNTRY_CODE } from '$lib/countries';
+
+	const countryCodeOptions = COUNTRIES.map((country) => ({
+		value: country.phoneCode,
+		label: `${country.flag} +${country.phoneCode} ${country.name}`,
+		searchTerms: `${country.name} ${country.phoneCode} ${country.flag}`
+	}));
 
 	let selectedCountryCode = $state(DEFAULT_PHONE_COUNTRY_CODE);
 	let rawPhoneNumber = $state('');
@@ -125,35 +132,36 @@
 		<ScrollReveal delay={100}>
 			<GlassCard>
 				<div class="space-y-5">
-					<!-- Country Code + Phone Number -->
+					<!-- Country Code -->
+					<div>
+						<label for="country-code-select" class="mb-2 block text-sm font-medium text-graphite-200">
+							Country
+						</label>
+						<SearchableSelect
+							options={countryCodeOptions}
+							value={selectedCountryCode}
+							onchange={(newValue) => (selectedCountryCode = newValue)}
+							placeholder="Search country..."
+							id="country-code-select"
+							ariaLabel="Select country code"
+						/>
+					</div>
+
+					<!-- Phone Number -->
 					<div>
 						<label for="phone-number-input" class="mb-2 block text-sm font-medium text-graphite-200">
 							Phone Number
 						</label>
-						<div class="flex gap-2">
-							<select
-								id="country-code-select"
-								bind:value={selectedCountryCode}
-								class="w-[7.5rem] shrink-0 rounded-lg border border-graphite-600/50 bg-graphite-700/50 px-2 py-2.5 text-sm text-graphite-100 transition-colors duration-200 focus:border-pastel-300/50 focus:ring-1 focus:ring-pastel-300/30 sm:w-36"
-								aria-label="Country code"
-							>
-								{#each COUNTRIES as country}
-									<option value={country.phoneCode}>
-										{country.flag} +{country.phoneCode}
-									</option>
-								{/each}
-							</select>
-							<input
-								id="phone-number-input"
-								type="text"
-								inputmode="numeric"
-								value={rawPhoneNumber}
-								oninput={handlePhoneNumberInput}
-								onpaste={handlePhoneNumberPaste}
-								placeholder="8119710096"
-								class="min-w-0 flex-1 rounded-lg border border-graphite-600/50 bg-graphite-700/50 px-4 py-2.5 text-sm text-graphite-100 placeholder:text-graphite-500 transition-colors duration-200 focus:border-pastel-300/50 focus:ring-1 focus:ring-pastel-300/30"
-							/>
-						</div>
+						<input
+							id="phone-number-input"
+							type="text"
+							inputmode="numeric"
+							value={rawPhoneNumber}
+							oninput={handlePhoneNumberInput}
+							onpaste={handlePhoneNumberPaste}
+							placeholder="8119710096"
+							class="w-full rounded-lg border border-graphite-600/50 bg-graphite-700/50 px-4 py-2.5 text-sm text-graphite-100 placeholder:text-graphite-500 transition-colors duration-200 focus:border-pastel-300/50 focus:ring-1 focus:ring-pastel-300/30"
+						/>
 						{#if displayFormattedNumber}
 							<p class="mt-2 text-xs text-graphite-400">
 								Formatted: <span class="font-medium text-pastel-300">{displayFormattedNumber}</span>
