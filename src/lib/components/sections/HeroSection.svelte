@@ -1,5 +1,5 @@
 <script lang="ts">
-	const technologPills = ['PHP', 'JavaScript / NodeJS', 'Python', 'AWS', 'Docker'];
+	const technologyPills = ['PHP', 'JavaScript / NodeJS', 'Python', 'AWS', 'Docker'];
 </script>
 
 <section
@@ -39,7 +39,7 @@
 
 		<!-- Tech Pills -->
 		<div class="animate-fade-in-up mt-6 flex flex-wrap justify-center gap-2 delay-300">
-			{#each technologPills as technology}
+			{#each technologyPills as technology}
 				<span
 					class="rounded-full border border-graphite-600/50 bg-graphite-700/40 px-3 py-1 text-xs text-graphite-300 transition-colors duration-300 hover:border-pastel-300/50 hover:text-pastel-200"
 				>
