@@ -54,6 +54,7 @@ body {
 	background-color: var(--color-graphite-900);
 	color: var(--color-graphite-100);
 	min-height: 100%;
+	overflow-x: hidden;
 }
 
 /* ─── Selection Color ─── */
