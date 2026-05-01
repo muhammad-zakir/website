@@ -52,4 +52,5 @@ export interface BillState {
 	items: BillItem[];
 	taxPercentage: number;
 	servicePercentage: number;
+	currencyCode?: string;
 }
