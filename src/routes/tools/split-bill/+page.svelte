@@ -1,18 +1,24 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { goto } from '$app/navigation';
-	import { page } from '$app/stores';
-	import { compressToEncodedURIComponent, decompressFromEncodedURIComponent } from 'lz-string';
+	import lzString from 'lz-string';
 	import SeoHead from '$lib/components/SeoHead.svelte';
 	import ScrollReveal from '$lib/components/ui/ScrollReveal.svelte';
 	import GlassCard from '$lib/components/ui/GlassCard.svelte';
+	import { CURRENCIES, DEFAULT_CURRENCY_CODE } from '$lib/countries';
 	import type { BillPerson, BillItem, BillState } from '$lib/types';
+
+	const { compressToEncodedURIComponent, decompressFromEncodedURIComponent } = lzString;
 
 	/* ─── State ─── */
 	let people: BillPerson[] = $state([]);
 	let items: BillItem[] = $state([]);
 	let taxPercentage: number = $state(10);
 	let servicePercentage: number = $state(5);
+	let selectedCurrencyCode: string = $state(DEFAULT_CURRENCY_CODE);
+
+	const selectedCurrency = $derived(
+		CURRENCIES.find((currency) => currency.code === selectedCurrencyCode) ?? CURRENCIES[0]
+	);
 
 	/* ─── Input States ─── */
 	let newPersonName = $state('');
@@ -27,12 +33,13 @@
 	}
 
 	/* ─── URL State Persistence ─── */
-	function serializeBillStateToUrl() {
+	function serializeBillStateToUrl(): string {
 		const billState: BillState = {
-			people,
-			items,
+			people: $state.snapshot(people),
+			items: $state.snapshot(items),
 			taxPercentage,
-			servicePercentage
+			servicePercentage,
+			currencyCode: selectedCurrencyCode
 		};
 		const jsonString = JSON.stringify(billState);
 		const compressedString = compressToEncodedURIComponent(jsonString);
@@ -49,6 +56,7 @@
 				items = parsedState.items;
 				taxPercentage = parsedState.taxPercentage ?? 10;
 				servicePercentage = parsedState.servicePercentage ?? 5;
+				selectedCurrencyCode = parsedState.currencyCode ?? DEFAULT_CURRENCY_CODE;
 				return true;
 			}
 			return false;
@@ -138,6 +146,30 @@
 		});
 	}
 
+	function tagAllPeopleForItem(itemId: string) {
+		items = items.map((item) => {
+			if (item.id !== itemId) return item;
+			return {
+				...item,
+				assignedPersonIds: people.map((person) => person.id)
+			};
+		});
+	}
+
+	function untagAllPeopleForItem(itemId: string) {
+		items = items.map((item) => {
+			if (item.id !== itemId) return item;
+			return {
+				...item,
+				assignedPersonIds: []
+			};
+		});
+	}
+
+	function areAllPeopleTaggedForItem(item: BillItem): boolean {
+		return people.length > 0 && people.every((person) => item.assignedPersonIds.includes(person.id));
+	}
+
 	/* ─── Calculations ─── */
 	const subtotalAmount = $derived(items.reduce((sum, item) => sum + item.price, 0));
 	const taxAmount = $derived(subtotalAmount * (taxPercentage / 100));
@@ -216,6 +248,7 @@
 		items = [];
 		taxPercentage = 10;
 		servicePercentage = 5;
+		selectedCurrencyCode = DEFAULT_CURRENCY_CODE;
 		window.history.replaceState(null, '', window.location.pathname);
 	}
 
@@ -226,6 +259,10 @@
 			minimumFractionDigits: 0,
 			maximumFractionDigits: 0
 		}).format(Math.round(amount));
+	}
+
+	function formatWithCurrency(amount: number): string {
+		return `${selectedCurrency.symbol} ${formatCurrencyAmount(amount)}`;
 	}
 </script>
 
@@ -275,13 +312,13 @@
 							bind:value={newPersonName}
 							onkeydown={handlePersonInputKeydown}
 							placeholder="Person name"
-							class="flex-1 rounded-lg border border-graphite-600/50 bg-graphite-700/50 px-3 py-2 text-sm text-graphite-100 placeholder:text-graphite-500 transition-colors duration-200 focus:border-pastel-300/50 focus:ring-1 focus:ring-pastel-300/30"
+							class="min-w-0 flex-1 rounded-lg border border-graphite-600/50 bg-graphite-700/50 px-3 py-2 text-sm text-graphite-100 placeholder:text-graphite-500 transition-colors duration-200 focus:border-pastel-300/50 focus:ring-1 focus:ring-pastel-300/30"
 							aria-label="New person name"
 						/>
 						<button
 							onclick={addNewPerson}
 							disabled={!newPersonName.trim()}
-							class="rounded-lg bg-pastel-300/15 px-4 py-2 text-sm font-medium text-pastel-300 transition-all duration-200 hover:bg-pastel-300/25 disabled:cursor-not-allowed disabled:opacity-40"
+							class="shrink-0 rounded-lg bg-pastel-300/15 px-4 py-2 text-sm font-medium text-pastel-300 transition-all duration-200 hover:bg-pastel-300/25 disabled:cursor-not-allowed disabled:opacity-40"
 						>
 							Add
 						</button>
@@ -324,33 +361,35 @@
 						{/if}
 					</h2>
 
-					<!-- Add Item -->
-					<div class="mb-4 flex gap-2">
+					<!-- Add Item — stacks on mobile for better fit -->
+					<div class="mb-4 space-y-2 sm:flex sm:gap-2 sm:space-y-0">
 						<input
 							type="text"
 							bind:value={newItemName}
 							onkeydown={handleItemInputKeydown}
 							placeholder="Item name"
-							class="flex-1 rounded-lg border border-graphite-600/50 bg-graphite-700/50 px-3 py-2 text-sm text-graphite-100 placeholder:text-graphite-500 transition-colors duration-200 focus:border-pastel-300/50 focus:ring-1 focus:ring-pastel-300/30"
+							class="w-full min-w-0 rounded-lg border border-graphite-600/50 bg-graphite-700/50 px-3 py-2 text-sm text-graphite-100 placeholder:text-graphite-500 transition-colors duration-200 focus:border-pastel-300/50 focus:ring-1 focus:ring-pastel-300/30 sm:flex-1"
 							aria-label="New item name"
 						/>
-						<input
-							type="number"
-							bind:value={newItemPrice}
-							onkeydown={handleItemInputKeydown}
-							placeholder="Price"
-							min="0"
-							step="any"
-							class="w-24 rounded-lg border border-graphite-600/50 bg-graphite-700/50 px-3 py-2 text-sm text-graphite-100 placeholder:text-graphite-500 transition-colors duration-200 focus:border-pastel-300/50 focus:ring-1 focus:ring-pastel-300/30 sm:w-28"
-							aria-label="Item price"
-						/>
-						<button
-							onclick={addNewItem}
-							disabled={!newItemName.trim() || !newItemPrice || parseFloat(newItemPrice) <= 0}
-							class="rounded-lg bg-pastel-300/15 px-4 py-2 text-sm font-medium text-pastel-300 transition-all duration-200 hover:bg-pastel-300/25 disabled:cursor-not-allowed disabled:opacity-40"
-						>
-							Add
-						</button>
+						<div class="flex gap-2">
+							<input
+								type="number"
+								bind:value={newItemPrice}
+								onkeydown={handleItemInputKeydown}
+								placeholder="Price"
+								min="0"
+								step="any"
+								class="min-w-0 flex-1 rounded-lg border border-graphite-600/50 bg-graphite-700/50 px-3 py-2 text-sm text-graphite-100 placeholder:text-graphite-500 transition-colors duration-200 focus:border-pastel-300/50 focus:ring-1 focus:ring-pastel-300/30 sm:w-28 sm:flex-none"
+								aria-label="Item price"
+							/>
+							<button
+								onclick={addNewItem}
+								disabled={!newItemName.trim() || !newItemPrice || parseFloat(newItemPrice) <= 0}
+								class="shrink-0 rounded-lg bg-pastel-300/15 px-4 py-2 text-sm font-medium text-pastel-300 transition-all duration-200 hover:bg-pastel-300/25 disabled:cursor-not-allowed disabled:opacity-40"
+							>
+								Add
+							</button>
+						</div>
 					</div>
 
 					<!-- Items List -->
@@ -362,13 +401,13 @@
 									style="animation: fadeInUp 0.2s ease-out both;"
 								>
 									<div class="mb-2 flex items-start justify-between gap-2">
-										<div>
-											<p class="text-sm font-medium text-graphite-100">{item.name}</p>
-											<p class="text-xs font-medium text-pastel-300">Rp {formatCurrencyAmount(item.price)}</p>
+										<div class="min-w-0 flex-1">
+											<p class="truncate text-sm font-medium text-graphite-100">{item.name}</p>
+											<p class="text-xs font-medium text-pastel-300">{formatWithCurrency(item.price)}</p>
 										</div>
 										<button
 											onclick={() => removeItemById(item.id)}
-											class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-graphite-400 transition-colors duration-200 hover:bg-graphite-600 hover:text-pastel-400"
+											class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-graphite-400 transition-colors duration-200 hover:bg-graphite-600 hover:text-pastel-400"
 											aria-label="Remove item {item.name}"
 										>
 											<svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -379,7 +418,20 @@
 
 									<!-- Person Assignment Chips -->
 									{#if people.length > 0}
-										<div class="flex flex-wrap gap-1.5">
+										<div class="flex flex-wrap items-center gap-1.5">
+											<!-- Tag All / Untag All toggle -->
+											<button
+												onclick={() => areAllPeopleTaggedForItem(item) ? untagAllPeopleForItem(item.id) : tagAllPeopleForItem(item.id)}
+												class="rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider transition-all duration-200 {areAllPeopleTaggedForItem(item)
+													? 'bg-pastel-300/10 text-pastel-400 hover:bg-red-400/10 hover:text-red-400'
+													: 'bg-graphite-600/20 text-graphite-500 hover:bg-pastel-300/10 hover:text-pastel-300'}"
+												aria-label="{areAllPeopleTaggedForItem(item) ? 'Untag all people from' : 'Tag all people to'} {item.name}"
+											>
+												{areAllPeopleTaggedForItem(item) ? 'Untag all' : 'Tag all'}
+											</button>
+
+											<span class="text-graphite-600" aria-hidden="true">·</span>
+
 											{#each people as person (person.id)}
 												<button
 													onclick={() => togglePersonAssignmentForItem(item.id, person.id)}
@@ -409,9 +461,28 @@
 			<ScrollReveal delay={300}>
 				<GlassCard>
 					<h2 class="mb-4 flex items-center gap-2 text-sm font-semibold text-pastel-300">
-						<span aria-hidden="true">💰</span> Tax & Service
+						<span aria-hidden="true">💰</span> Tax, Service & Currency
 					</h2>
-					<div class="grid grid-cols-2 gap-4">
+
+					<!-- Currency -->
+					<div class="mb-4">
+						<label for="currency-select" class="mb-1 block text-xs font-medium text-graphite-300">
+							Currency
+						</label>
+						<select
+							id="currency-select"
+							bind:value={selectedCurrencyCode}
+							class="w-full rounded-lg border border-graphite-600/50 bg-graphite-700/50 px-3 py-2 text-sm text-graphite-100 transition-colors duration-200 focus:border-pastel-300/50 focus:ring-1 focus:ring-pastel-300/30"
+						>
+							{#each CURRENCIES as currency}
+								<option value={currency.code}>
+									{currency.symbol} — {currency.code}
+								</option>
+							{/each}
+						</select>
+					</div>
+
+					<div class="grid grid-cols-2 gap-3 sm:gap-4">
 						<div>
 							<label for="tax-percentage-input" class="mb-1 block text-xs font-medium text-graphite-300">
 								Tax (%)
@@ -456,24 +527,24 @@
 						<div class="mb-4 space-y-2 rounded-xl border border-graphite-600/30 bg-graphite-900/30 p-3">
 							<div class="flex justify-between text-xs text-graphite-300">
 								<span>Subtotal</span>
-								<span>Rp {formatCurrencyAmount(subtotalAmount)}</span>
+								<span>{formatWithCurrency(subtotalAmount)}</span>
 							</div>
 							{#if taxPercentage > 0}
 								<div class="flex justify-between text-xs text-graphite-400">
 									<span>Tax ({taxPercentage}%)</span>
-									<span>Rp {formatCurrencyAmount(taxAmount)}</span>
+									<span>{formatWithCurrency(taxAmount)}</span>
 								</div>
 							{/if}
 							{#if servicePercentage > 0}
 								<div class="flex justify-between text-xs text-graphite-400">
 									<span>Service ({servicePercentage}%)</span>
-									<span>Rp {formatCurrencyAmount(serviceAmount)}</span>
+									<span>{formatWithCurrency(serviceAmount)}</span>
 								</div>
 							{/if}
 							<div class="border-t border-graphite-600/30 pt-2">
 								<div class="flex justify-between text-sm font-semibold">
 									<span class="text-graphite-100">Grand Total</span>
-									<span class="text-pastel-300">Rp {formatCurrencyAmount(grandTotalAmount)}</span>
+									<span class="text-pastel-300">{formatWithCurrency(grandTotalAmount)}</span>
 								</div>
 							</div>
 						</div>
@@ -482,7 +553,7 @@
 						{#if unassignedItemsTotal > 0}
 							<div class="mb-4 rounded-lg border border-yellow-500/30 bg-yellow-500/10 px-3 py-2">
 								<p class="text-xs text-yellow-400">
-									⚠️ Some items worth Rp {formatCurrencyAmount(unassignedItemsTotal)} are not assigned to anyone and won't be included in the per-person split.
+									⚠️ Some items worth {formatWithCurrency(unassignedItemsTotal)} are not assigned to anyone and won't be included in the per-person split.
 								</p>
 							</div>
 						{/if}
@@ -493,11 +564,11 @@
 							<div class="space-y-2">
 								{#each perPersonBreakdown as breakdown (breakdown.person.id)}
 									<div class="flex items-center justify-between rounded-lg border border-graphite-600/30 bg-graphite-900/30 px-3 py-2.5">
-										<span class="text-sm font-medium text-graphite-200">{breakdown.person.name}</span>
-										<div class="text-right">
-											<span class="text-sm font-bold text-pastel-300">Rp {formatCurrencyAmount(breakdown.totalAmount)}</span>
+										<span class="min-w-0 truncate text-sm font-medium text-graphite-200">{breakdown.person.name}</span>
+										<div class="shrink-0 text-right">
+											<span class="text-sm font-bold text-pastel-300">{formatWithCurrency(breakdown.totalAmount)}</span>
 											{#if breakdown.baseAmount !== breakdown.totalAmount}
-												<p class="text-[10px] text-graphite-500">base: Rp {formatCurrencyAmount(breakdown.baseAmount)}</p>
+												<p class="text-[10px] text-graphite-500">base: {formatWithCurrency(breakdown.baseAmount)}</p>
 											{/if}
 										</div>
 									</div>
