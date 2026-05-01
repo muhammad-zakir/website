@@ -46,6 +46,7 @@ html {
 	-moz-osx-font-smoothing: grayscale;
 	scroll-behavior: smooth;
 	height: 100%;
+	overflow-x: clip;
 }
 
 body {
@@ -54,7 +55,6 @@ body {
 	background-color: var(--color-graphite-900);
 	color: var(--color-graphite-100);
 	min-height: 100%;
-	overflow-x: hidden;
 }
 
 /* ─── Selection Color ─── */
