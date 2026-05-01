@@ -2,28 +2,9 @@
 	import SeoHead from '$lib/components/SeoHead.svelte';
 	import ScrollReveal from '$lib/components/ui/ScrollReveal.svelte';
 	import GlassCard from '$lib/components/ui/GlassCard.svelte';
+	import { COUNTRIES, DEFAULT_PHONE_COUNTRY_CODE } from '$lib/countries';
 
-	const COUNTRY_CODES = [
-		{ code: '62', country: 'Indonesia', flag: '🇮🇩' },
-		{ code: '1', country: 'United States', flag: '🇺🇸' },
-		{ code: '44', country: 'United Kingdom', flag: '🇬🇧' },
-		{ code: '65', country: 'Singapore', flag: '🇸🇬' },
-		{ code: '60', country: 'Malaysia', flag: '🇲🇾' },
-		{ code: '61', country: 'Australia', flag: '🇦🇺' },
-		{ code: '81', country: 'Japan', flag: '🇯🇵' },
-		{ code: '82', country: 'South Korea', flag: '🇰🇷' },
-		{ code: '86', country: 'China', flag: '🇨🇳' },
-		{ code: '91', country: 'India', flag: '🇮🇳' },
-		{ code: '49', country: 'Germany', flag: '🇩🇪' },
-		{ code: '33', country: 'France', flag: '🇫🇷' },
-		{ code: '971', country: 'UAE', flag: '🇦🇪' },
-		{ code: '966', country: 'Saudi Arabia', flag: '🇸🇦' },
-		{ code: '63', country: 'Philippines', flag: '🇵🇭' },
-		{ code: '66', country: 'Thailand', flag: '🇹🇭' },
-		{ code: '84', country: 'Vietnam', flag: '🇻🇳' }
-	];
-
-	let selectedCountryCode = $state('62');
+	let selectedCountryCode = $state(DEFAULT_PHONE_COUNTRY_CODE);
 	let rawPhoneNumber = $state('');
 	let messageText = $state('');
 	let hasCopiedLink = $state(false);
@@ -153,12 +134,12 @@
 							<select
 								id="country-code-select"
 								bind:value={selectedCountryCode}
-								class="w-28 rounded-lg border border-graphite-600/50 bg-graphite-700/50 px-3 py-2.5 text-sm text-graphite-100 transition-colors duration-200 focus:border-pastel-300/50 focus:ring-1 focus:ring-pastel-300/30 sm:w-32"
+								class="w-[7.5rem] shrink-0 rounded-lg border border-graphite-600/50 bg-graphite-700/50 px-2 py-2.5 text-sm text-graphite-100 transition-colors duration-200 focus:border-pastel-300/50 focus:ring-1 focus:ring-pastel-300/30 sm:w-36"
 								aria-label="Country code"
 							>
-								{#each COUNTRY_CODES as countryCodeOption}
-									<option value={countryCodeOption.code}>
-										{countryCodeOption.flag} +{countryCodeOption.code}
+								{#each COUNTRIES as country}
+									<option value={country.phoneCode}>
+										{country.flag} +{country.phoneCode}
 									</option>
 								{/each}
 							</select>
@@ -170,7 +151,7 @@
 								oninput={handlePhoneNumberInput}
 								onpaste={handlePhoneNumberPaste}
 								placeholder="8119710096"
-								class="flex-1 rounded-lg border border-graphite-600/50 bg-graphite-700/50 px-4 py-2.5 text-sm text-graphite-100 placeholder:text-graphite-500 transition-colors duration-200 focus:border-pastel-300/50 focus:ring-1 focus:ring-pastel-300/30"
+								class="min-w-0 flex-1 rounded-lg border border-graphite-600/50 bg-graphite-700/50 px-4 py-2.5 text-sm text-graphite-100 placeholder:text-graphite-500 transition-colors duration-200 focus:border-pastel-300/50 focus:ring-1 focus:ring-pastel-300/30"
 							/>
 						</div>
 						{#if displayFormattedNumber}
