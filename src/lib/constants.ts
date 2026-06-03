@@ -87,7 +87,7 @@ export const EXPERIENCES: Experience[] = [
 		company: 'Silentmode Sdn. Bhd.',
 		location: 'Selangor, MY (Remote)',
 		description:
-			'Decreased AWS costs for file archives with more optimal infrastructure. Increased unit test coverage for a large legacy codebase. Optimized code style standardization and conducted peer reviews for every team member.',
+			'Increased unit test coverage for a large legacy codebase. Optimized code style standardization and conducted peer reviews for every team member.',
 		technologies: ['PHP', 'Laravel', 'NodeJS', 'NestJS', 'Vue', 'Bootstrap']
 	},
 	{
@@ -106,7 +106,6 @@ export const EXPERIENCES: Experience[] = [
 		location: 'Jakarta, ID (Hybrid)',
 		description:
 			'Designed end-to-end architecture encompassing backend, frontend, and infrastructure using AWS. Developed project boilerplates and managed a small team until an official tech lead was recruited.',
-		highlights: ['20k daily users', '80k peak users', '<$300/mo infra cost', '>99% uptime'],
 		technologies: ['NodeJS', 'Fastify', 'Svelte', 'Tailwind CSS', 'PostgreSQL', 'AWS', 'GitHub Actions']
 	},
 	{
