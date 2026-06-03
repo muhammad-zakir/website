@@ -4,10 +4,17 @@
 	import SeoHead from '$lib/components/SeoHead.svelte';
 	import ScrollReveal from '$lib/components/ui/ScrollReveal.svelte';
 	import GlassCard from '$lib/components/ui/GlassCard.svelte';
+	import SearchableSelect from '$lib/components/ui/SearchableSelect.svelte';
 	import { CURRENCIES, DEFAULT_CURRENCY_CODE } from '$lib/countries';
 	import type { BillPerson, BillItem, BillState } from '$lib/types';
 
 	const { compressToEncodedURIComponent, decompressFromEncodedURIComponent } = lzString;
+
+	const currencyOptions = CURRENCIES.map((currency) => ({
+		value: currency.code,
+		label: `${currency.symbol} (${currency.code}) - ${currency.countries.join(', ')}`,
+		searchTerms: `${currency.code} ${currency.symbol} ${currency.countries.join(' ')}`
+	}));
 
 	/* ─── State ─── */
 	let people: BillPerson[] = $state([]);
@@ -167,7 +174,9 @@
 	}
 
 	function areAllPeopleTaggedForItem(item: BillItem): boolean {
-		return people.length > 0 && people.every((person) => item.assignedPersonIds.includes(person.id));
+		return (
+			people.length > 0 && people.every((person) => item.assignedPersonIds.includes(person.id))
+		);
 	}
 
 	/* ─── Calculations ─── */
@@ -280,16 +289,23 @@
 					href="/tools"
 					class="mb-4 inline-flex items-center gap-1 text-xs text-graphite-400 transition-colors duration-200 hover:text-pastel-300"
 				>
-					<svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+					<svg
+						class="h-3.5 w-3.5"
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+						stroke-width="2"
+						aria-hidden="true"
+					>
 						<path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
 					</svg>
 					Back to Tools
 				</a>
-				<h1 class="text-2xl font-bold text-graphite-50 sm:text-3xl">
-					Split Bill Calculator
-				</h1>
+				<h1 class="text-2xl font-bold text-graphite-50 sm:text-3xl">Split Bill Calculator</h1>
 				<p class="mt-2 text-sm text-graphite-300">
-					Add people and items, tag each item to the people who ordered it, and get a fair split including tax and service.
+					Add people and items, tag each item to the people who ordered it, and get a fair split
+					including tax and service.
 				</p>
 			</div>
 		</ScrollReveal>
@@ -301,7 +317,10 @@
 					<h2 class="mb-4 flex items-center gap-2 text-sm font-semibold text-pastel-300">
 						<span aria-hidden="true">👥</span> People
 						{#if people.length > 0}
-							<span class="rounded-full bg-graphite-600/50 px-2 py-0.5 text-[11px] text-graphite-400">{people.length}</span>
+							<span
+								class="rounded-full bg-graphite-600/50 px-2 py-0.5 text-[11px] text-graphite-400"
+								>{people.length}</span
+							>
 						{/if}
 					</h2>
 
@@ -312,7 +331,7 @@
 							bind:value={newPersonName}
 							onkeydown={handlePersonInputKeydown}
 							placeholder="Person name"
-							class="min-w-0 flex-1 rounded-lg border border-graphite-600/50 bg-graphite-700/50 px-3 py-2 text-sm text-graphite-100 placeholder:text-graphite-500 transition-colors duration-200 focus:border-pastel-300/50 focus:ring-1 focus:ring-pastel-300/30"
+							class="min-w-0 flex-1 rounded-lg border border-graphite-600/50 bg-graphite-700/50 px-3 py-2 text-sm text-graphite-100 transition-colors duration-200 placeholder:text-graphite-500 focus:border-pastel-300/50 focus:ring-1 focus:ring-pastel-300/30"
 							aria-label="New person name"
 						/>
 						<button
@@ -338,15 +357,29 @@
 										class="flex h-4 w-4 items-center justify-center rounded-full text-graphite-400 transition-colors duration-200 hover:bg-graphite-600 hover:text-pastel-400"
 										aria-label="Remove {person.name}"
 									>
-										<svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-											<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+										<svg
+											class="h-3 w-3"
+											xmlns="http://www.w3.org/2000/svg"
+											fill="none"
+											viewBox="0 0 24 24"
+											stroke="currentColor"
+											stroke-width="2"
+											aria-hidden="true"
+										>
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												d="M6 18L18 6M6 6l12 12"
+											/>
 										</svg>
 									</button>
 								</div>
 							{/each}
 						</div>
 					{:else}
-						<p class="text-xs text-graphite-500">No people added yet. Add the people splitting this bill.</p>
+						<p class="text-xs text-graphite-500">
+							No people added yet. Add the people splitting this bill.
+						</p>
 					{/if}
 				</GlassCard>
 			</ScrollReveal>
@@ -357,7 +390,10 @@
 					<h2 class="mb-4 flex items-center gap-2 text-sm font-semibold text-pastel-300">
 						<span aria-hidden="true">📋</span> Items
 						{#if items.length > 0}
-							<span class="rounded-full bg-graphite-600/50 px-2 py-0.5 text-[11px] text-graphite-400">{items.length}</span>
+							<span
+								class="rounded-full bg-graphite-600/50 px-2 py-0.5 text-[11px] text-graphite-400"
+								>{items.length}</span
+							>
 						{/if}
 					</h2>
 
@@ -368,7 +404,7 @@
 							bind:value={newItemName}
 							onkeydown={handleItemInputKeydown}
 							placeholder="Item name"
-							class="w-full min-w-0 rounded-lg border border-graphite-600/50 bg-graphite-700/50 px-3 py-2 text-sm text-graphite-100 placeholder:text-graphite-500 transition-colors duration-200 focus:border-pastel-300/50 focus:ring-1 focus:ring-pastel-300/30 sm:flex-1"
+							class="w-full min-w-0 rounded-lg border border-graphite-600/50 bg-graphite-700/50 px-3 py-2 text-sm text-graphite-100 transition-colors duration-200 placeholder:text-graphite-500 focus:border-pastel-300/50 focus:ring-1 focus:ring-pastel-300/30 sm:flex-1"
 							aria-label="New item name"
 						/>
 						<div class="flex gap-2">
@@ -379,7 +415,7 @@
 								placeholder="Price"
 								min="0"
 								step="any"
-								class="min-w-0 flex-1 rounded-lg border border-graphite-600/50 bg-graphite-700/50 px-3 py-2 text-sm text-graphite-100 placeholder:text-graphite-500 transition-colors duration-200 focus:border-pastel-300/50 focus:ring-1 focus:ring-pastel-300/30 sm:w-28 sm:flex-none"
+								class="min-w-0 flex-1 rounded-lg border border-graphite-600/50 bg-graphite-700/50 px-3 py-2 text-sm text-graphite-100 transition-colors duration-200 placeholder:text-graphite-500 focus:border-pastel-300/50 focus:ring-1 focus:ring-pastel-300/30 sm:w-28 sm:flex-none"
 								aria-label="Item price"
 							/>
 							<button
@@ -403,15 +439,29 @@
 									<div class="mb-2 flex items-start justify-between gap-2">
 										<div class="min-w-0 flex-1">
 											<p class="truncate text-sm font-medium text-graphite-100">{item.name}</p>
-											<p class="text-xs font-medium text-pastel-300">{formatWithCurrency(item.price)}</p>
+											<p class="text-xs font-medium text-pastel-300">
+												{formatWithCurrency(item.price)}
+											</p>
 										</div>
 										<button
 											onclick={() => removeItemById(item.id)}
 											class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-graphite-400 transition-colors duration-200 hover:bg-graphite-600 hover:text-pastel-400"
 											aria-label="Remove item {item.name}"
 										>
-											<svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-												<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+											<svg
+												class="h-3.5 w-3.5"
+												xmlns="http://www.w3.org/2000/svg"
+												fill="none"
+												viewBox="0 0 24 24"
+												stroke="currentColor"
+												stroke-width="2"
+												aria-hidden="true"
+											>
+												<path
+													stroke-linecap="round"
+													stroke-linejoin="round"
+													d="M6 18L18 6M6 6l12 12"
+												/>
 											</svg>
 										</button>
 									</div>
@@ -421,11 +471,18 @@
 										<div class="flex flex-wrap items-center gap-1.5">
 											<!-- Tag All / Untag All toggle -->
 											<button
-												onclick={() => areAllPeopleTaggedForItem(item) ? untagAllPeopleForItem(item.id) : tagAllPeopleForItem(item.id)}
-												class="rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider transition-all duration-200 {areAllPeopleTaggedForItem(item)
+												onclick={() =>
+													areAllPeopleTaggedForItem(item)
+														? untagAllPeopleForItem(item.id)
+														: tagAllPeopleForItem(item.id)}
+												class="rounded-full px-2 py-0.5 text-[10px] font-semibold tracking-wider uppercase transition-all duration-200 {areAllPeopleTaggedForItem(
+													item
+												)
 													? 'bg-pastel-300/10 text-pastel-400 hover:bg-red-400/10 hover:text-red-400'
 													: 'bg-graphite-600/20 text-graphite-500 hover:bg-pastel-300/10 hover:text-pastel-300'}"
-												aria-label="{areAllPeopleTaggedForItem(item) ? 'Untag all people from' : 'Tag all people to'} {item.name}"
+												aria-label="{areAllPeopleTaggedForItem(item)
+													? 'Untag all people from'
+													: 'Tag all people to'} {item.name}"
 											>
 												{areAllPeopleTaggedForItem(item) ? 'Untag all' : 'Tag all'}
 											</button>
@@ -435,10 +492,14 @@
 											{#each people as person (person.id)}
 												<button
 													onclick={() => togglePersonAssignmentForItem(item.id, person.id)}
-													class="rounded-full px-2.5 py-1 text-[11px] font-medium transition-all duration-200 {item.assignedPersonIds.includes(person.id)
-														? 'bg-pastel-300/20 text-pastel-300 border border-pastel-300/40'
-														: 'bg-graphite-600/30 text-graphite-400 border border-graphite-600/30 hover:border-graphite-500/50 hover:text-graphite-300'}"
-													aria-label="{item.assignedPersonIds.includes(person.id) ? 'Unassign' : 'Assign'} {person.name} to {item.name}"
+													class="rounded-full px-2.5 py-1 text-[11px] font-medium transition-all duration-200 {item.assignedPersonIds.includes(
+														person.id
+													)
+														? 'border border-pastel-300/40 bg-pastel-300/20 text-pastel-300'
+														: 'border border-graphite-600/30 bg-graphite-600/30 text-graphite-400 hover:border-graphite-500/50 hover:text-graphite-300'}"
+													aria-label="{item.assignedPersonIds.includes(person.id)
+														? 'Unassign'
+														: 'Assign'} {person.name} to {item.name}"
 													aria-pressed={item.assignedPersonIds.includes(person.id)}
 												>
 													{person.name}
@@ -452,7 +513,9 @@
 							{/each}
 						</div>
 					{:else}
-						<p class="text-xs text-graphite-500">No items added yet. Add the items from the bill.</p>
+						<p class="text-xs text-graphite-500">
+							No items added yet. Add the items from the bill.
+						</p>
 					{/if}
 				</GlassCard>
 			</ScrollReveal>
@@ -469,22 +532,22 @@
 						<label for="currency-select" class="mb-1 block text-xs font-medium text-graphite-300">
 							Currency
 						</label>
-						<select
+						<SearchableSelect
+							options={currencyOptions}
+							value={selectedCurrencyCode}
+							onchange={(newValue) => (selectedCurrencyCode = newValue)}
+							placeholder="Search currency..."
 							id="currency-select"
-							bind:value={selectedCurrencyCode}
-							class="w-full rounded-lg border border-graphite-600/50 bg-graphite-700/50 px-3 py-2 text-sm text-graphite-100 transition-colors duration-200 focus:border-pastel-300/50 focus:ring-1 focus:ring-pastel-300/30"
-						>
-							{#each CURRENCIES as currency}
-								<option value={currency.code}>
-									{currency.symbol} — {currency.code}
-								</option>
-							{/each}
-						</select>
+							ariaLabel="Select currency"
+						/>
 					</div>
 
 					<div class="grid grid-cols-2 gap-3 sm:gap-4">
 						<div>
-							<label for="tax-percentage-input" class="mb-1 block text-xs font-medium text-graphite-300">
+							<label
+								for="tax-percentage-input"
+								class="mb-1 block text-xs font-medium text-graphite-300"
+							>
 								Tax (%)
 							</label>
 							<input
@@ -498,7 +561,10 @@
 							/>
 						</div>
 						<div>
-							<label for="service-percentage-input" class="mb-1 block text-xs font-medium text-graphite-300">
+							<label
+								for="service-percentage-input"
+								class="mb-1 block text-xs font-medium text-graphite-300"
+							>
 								Service (%)
 							</label>
 							<input
@@ -524,7 +590,9 @@
 						</h2>
 
 						<!-- Totals -->
-						<div class="mb-4 space-y-2 rounded-xl border border-graphite-600/30 bg-graphite-900/30 p-3">
+						<div
+							class="mb-4 space-y-2 rounded-xl border border-graphite-600/30 bg-graphite-900/30 p-3"
+						>
 							<div class="flex justify-between text-xs text-graphite-300">
 								<span>Subtotal</span>
 								<span>{formatWithCurrency(subtotalAmount)}</span>
@@ -553,22 +621,33 @@
 						{#if unassignedItemsTotal > 0}
 							<div class="mb-4 rounded-lg border border-yellow-500/30 bg-yellow-500/10 px-3 py-2">
 								<p class="text-xs text-yellow-400">
-									⚠️ Some items worth {formatWithCurrency(unassignedItemsTotal)} are not assigned to anyone and won't be included in the per-person split.
+									⚠️ Some items worth {formatWithCurrency(unassignedItemsTotal)} are not assigned to anyone
+									and won't be included in the per-person split.
 								</p>
 							</div>
 						{/if}
 
 						<!-- Per Person Breakdown -->
 						{#if perPersonBreakdown.length > 0}
-							<h3 class="mb-2 text-xs font-semibold text-graphite-300 uppercase tracking-wider">Per Person</h3>
+							<h3 class="mb-2 text-xs font-semibold tracking-wider text-graphite-300 uppercase">
+								Per Person
+							</h3>
 							<div class="space-y-2">
 								{#each perPersonBreakdown as breakdown (breakdown.person.id)}
-									<div class="flex items-center justify-between rounded-lg border border-graphite-600/30 bg-graphite-900/30 px-3 py-2.5">
-										<span class="min-w-0 truncate text-sm font-medium text-graphite-200">{breakdown.person.name}</span>
+									<div
+										class="flex items-center justify-between rounded-lg border border-graphite-600/30 bg-graphite-900/30 px-3 py-2.5"
+									>
+										<span class="min-w-0 truncate text-sm font-medium text-graphite-200"
+											>{breakdown.person.name}</span
+										>
 										<div class="shrink-0 text-right">
-											<span class="text-sm font-bold text-pastel-300">{formatWithCurrency(breakdown.totalAmount)}</span>
+											<span class="text-sm font-bold text-pastel-300"
+												>{formatWithCurrency(breakdown.totalAmount)}</span
+											>
 											{#if breakdown.baseAmount !== breakdown.totalAmount}
-												<p class="text-[10px] text-graphite-500">base: {formatWithCurrency(breakdown.baseAmount)}</p>
+												<p class="text-[10px] text-graphite-500">
+													base: {formatWithCurrency(breakdown.baseAmount)}
+												</p>
 											{/if}
 										</div>
 									</div>
@@ -586,17 +665,37 @@
 						<button
 							onclick={saveAndCopyShareLink}
 							class="inline-flex flex-1 items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-all duration-300 {hasCopiedShareLink
-								? 'bg-green-500/20 text-green-400 border border-green-500/30'
+								? 'border border-green-500/30 bg-green-500/20 text-green-400'
 								: 'bg-pastel-300 text-graphite-900 hover:bg-pastel-200 hover:shadow-lg hover:shadow-pastel-300/20'}"
 						>
 							{#if hasCopiedShareLink}
-								<svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+								<svg
+									class="h-4 w-4"
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+									stroke-width="2"
+									aria-hidden="true"
+								>
 									<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
 								</svg>
 								Link copied!
 							{:else}
-								<svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-									<path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
+								<svg
+									class="h-4 w-4"
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+									stroke-width="2"
+									aria-hidden="true"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"
+									/>
 								</svg>
 								Save & Copy Link
 							{/if}
@@ -605,8 +704,20 @@
 							onclick={clearAllData}
 							class="inline-flex flex-1 items-center justify-center gap-2 rounded-lg border border-graphite-600 bg-graphite-700/40 px-5 py-2.5 text-sm font-medium text-graphite-300 transition-all duration-300 hover:border-red-400/30 hover:text-red-400"
 						>
-							<svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-								<path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+							<svg
+								class="h-4 w-4"
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+								stroke-width="2"
+								aria-hidden="true"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+								/>
 							</svg>
 							Clear All
 						</button>
