@@ -137,22 +137,24 @@
 					</button>
 
 					{#if isToolsDropdownOpen}
-						<div
-							class="absolute top-full right-0 mt-1 w-56 rounded-xl border border-graphite-600/50 bg-graphite-800/95 p-1.5 shadow-xl backdrop-blur-md"
-							role="menu"
-						>
-							{#each TOOLS_NAVIGATION_LINKS as toolLink}
-								<a
-									href={toolLink.href}
-									class="block rounded-lg px-3 py-2.5 text-sm transition-colors duration-200 {isActiveRoute(toolLink.href)
-										? 'bg-pastel-300/10 text-pastel-300'
-										: 'text-graphite-300 hover:bg-graphite-700/50 hover:text-graphite-50'}"
-									role="menuitem"
-									onclick={() => (isToolsDropdownOpen = false)}
-								>
-									{toolLink.label}
-								</a>
-							{/each}
+						<div class="absolute top-full right-0 pt-1">
+							<div
+								class="w-56 rounded-xl border border-graphite-600/50 bg-graphite-800/95 p-1.5 shadow-xl backdrop-blur-md"
+								role="menu"
+							>
+								{#each TOOLS_NAVIGATION_LINKS as toolLink}
+									<a
+										href={toolLink.href}
+										class="block rounded-lg px-3 py-2.5 text-sm transition-colors duration-200 {isActiveRoute(toolLink.href)
+											? 'bg-pastel-300/10 text-pastel-300'
+											: 'text-graphite-300 hover:bg-graphite-700/50 hover:text-graphite-50'}"
+										role="menuitem"
+										onclick={() => (isToolsDropdownOpen = false)}
+									>
+										{toolLink.label}
+									</a>
+								{/each}
+							</div>
 						</div>
 					{/if}
 				</div>
