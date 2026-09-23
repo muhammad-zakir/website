@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { browser } from '$app/environment';
+	import { SvelteMap } from 'svelte/reactivity';
 	import lzString from 'lz-string';
 	import SeoHead from '$lib/components/SeoHead.svelte';
 	import ScrollReveal from '$lib/components/ui/ScrollReveal.svelte';
@@ -187,7 +188,7 @@
 	const grandTotalAmount = $derived(subtotalAmount + taxAmount + serviceAmount);
 
 	const perPersonBreakdown = $derived.by(() => {
-		const breakdown = new Map<string, number>();
+		const breakdown = new SvelteMap<string, number>();
 
 		// Initialize all people with 0
 		for (const person of people) {
