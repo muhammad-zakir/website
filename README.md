@@ -1,42 +1,68 @@
-# sv
+# zakir.id
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Personal portfolio and tools site for Muhammad Zakir — Software Engineer.
 
-## Creating a project
+Live at [zakir.id](https://zakir.id).
 
-If you're seeing this, you've probably already done this step. Congrats!
+## What's here
 
-```sh
-# create a new project
-npx sv create my-app
-```
+- **Portfolio** — hero, about, skills, and experience sections.
+- **Tools** ([`/tools`](https://zakir.id/tools)) — small free utilities:
+  - **WhatsApp Click-to-Chat generator** — builds a `wa.me` link from a country code and phone number.
+  - **Split Bill Calculator** — splits items, tax, and service charge across a group, with shareable state encoded in the URL.
+- **Contact** — links to email, LinkedIn, and GitHub.
 
-To recreate this project with the same configuration:
+## Stack
 
-```sh
-# recreate this project
-pnpm dlx sv@0.12.5 create --template minimal --types ts --add prettier eslint vitest="usages:unit,component" playwright tailwindcss="plugins:typography,forms" sveltekit-adapter="adapter:cloudflare+cfTarget:workers" devtools-json --install pnpm website
-```
+- [SvelteKit](https://svelte.dev/docs/kit) + TypeScript
+- [Tailwind CSS v4](https://tailwindcss.com/)
+- [Cloudflare Workers](https://developers.cloudflare.com/workers/) via `wrangler` and `@sveltejs/adapter-cloudflare`
+- [Vitest](https://vitest.dev/) for unit/component tests, [Playwright](https://playwright.dev/) for e2e tests
+- [pnpm](https://pnpm.io/) as the package manager
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Install dependencies, then start the dev server:
 
 ```sh
-npm run dev
+pnpm install
+pnpm dev
 
 # or start the server and open the app in a new browser tab
-npm run dev -- --open
+pnpm dev -- --open
 ```
 
 ## Building
 
-To create a production version of your app:
-
 ```sh
-npm run build
+pnpm build
 ```
 
-You can preview the production build with `npm run preview`.
+Preview the production build locally with Wrangler:
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+```sh
+pnpm preview
+```
+
+## Testing
+
+```sh
+pnpm test:unit    # unit/component tests (Vitest)
+pnpm test:e2e     # end-to-end tests (Playwright)
+pnpm test         # both
+```
+
+## Linting & formatting
+
+```sh
+pnpm lint    # prettier --check + eslint
+pnpm format  # prettier --write
+```
+
+## Deployment
+
+```sh
+pnpm deploy
+```
+
+Builds the app and deploys it to Cloudflare Workers with `wrangler deploy`.
