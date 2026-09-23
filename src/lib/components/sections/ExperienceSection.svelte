@@ -18,7 +18,7 @@
 
 		<!-- Timeline -->
 		<div class="relative">
-			{#each EXPERIENCES as experience, experienceIndex}
+			{#each EXPERIENCES as experience, experienceIndex (`${experience.company}-${experience.period}`)}
 				<ScrollReveal delay={experienceIndex * 60 + 100}>
 					<div class="relative flex gap-4 pb-1">
 						<!-- Timeline dot + line -->
@@ -94,7 +94,7 @@
 
 									{#if experience.highlights && experience.highlights.length > 0}
 										<div class="grid grid-cols-2 gap-2 sm:grid-cols-4">
-											{#each experience.highlights as highlight}
+											{#each experience.highlights as highlight, highlightIndex (highlightIndex)}
 												<div
 													class="rounded-xl border border-graphite-600/50 bg-graphite-700/30 px-2 py-2 text-center"
 												>
@@ -106,7 +106,7 @@
 
 									{#if experience.technologies && experience.technologies.length > 0}
 										<div class="flex flex-wrap gap-1.5">
-											{#each experience.technologies as technology}
+											{#each experience.technologies as technology, technologyIndex (technologyIndex)}
 												<span
 													class="rounded-full bg-pastel-300/10 px-2.5 py-0.5 text-[11px] font-medium text-pastel-300"
 												>

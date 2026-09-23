@@ -97,7 +97,7 @@
 
 			<!-- Desktop Navigation -->
 			<div class="hidden items-center gap-1 md:flex">
-				{#each NAVIGATION_LINKS as link}
+				{#each NAVIGATION_LINKS as link (link.href)}
 					<a
 						href={link.href}
 						class="rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200 {isActiveRoute(
@@ -150,7 +150,7 @@
 								class="w-56 rounded-xl border border-graphite-600/50 bg-graphite-800/95 p-1.5 shadow-xl backdrop-blur-md"
 								role="menu"
 							>
-								{#each TOOLS_NAVIGATION_LINKS as toolLink}
+								{#each TOOLS_NAVIGATION_LINKS as toolLink (toolLink.href)}
 									<a
 										href={toolLink.href}
 										class="block rounded-lg px-3 py-2.5 text-sm transition-colors duration-200 {isActiveRoute(
@@ -230,7 +230,7 @@
 	</div>
 
 	<div class="flex flex-col gap-1 px-4 pt-4 pb-6">
-		{#each NAVIGATION_LINKS as link}
+		{#each NAVIGATION_LINKS as link (link.href)}
 			<a
 				href={link.href}
 				class="rounded-lg px-4 py-3 text-base font-medium transition-colors duration-200 {isActiveRoute(
@@ -273,7 +273,7 @@
 
 		{#if isMobileToolsExpanded}
 			<div class="ml-4 flex flex-col gap-0.5 border-l border-graphite-700/50 pl-3">
-				{#each TOOLS_NAVIGATION_LINKS as toolLink}
+				{#each TOOLS_NAVIGATION_LINKS as toolLink (toolLink.href)}
 					<a
 						href={toolLink.href}
 						class="rounded-lg px-3 py-2.5 text-sm transition-colors duration-200 {isActiveRoute(

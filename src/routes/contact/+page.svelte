@@ -41,7 +41,7 @@
 		<!-- Contact Cards -->
 		<ScrollReveal delay={200} class="mt-10">
 			<div class="space-y-3">
-				{#each contactLinks as link, linkIndex}
+				{#each contactLinks as link, linkIndex (link.href)}
 					<a
 						href={link.href}
 						target={link.href.startsWith('mailto:') ? undefined : '_blank'}

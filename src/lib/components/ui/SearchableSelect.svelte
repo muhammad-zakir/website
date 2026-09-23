@@ -1,5 +1,4 @@
 <script lang="ts">
-
 	interface SelectOption {
 		value: string;
 		label: string;
@@ -179,7 +178,7 @@
 			<!-- Options List -->
 			<div bind:this={dropdownElement} class="max-h-52 overflow-y-auto p-1.5" role="listbox">
 				{#if filteredOptions.length > 0}
-					{#each filteredOptions as option, optionIndex}
+					{#each filteredOptions as option, optionIndex (option.value)}
 						<button
 							type="button"
 							class="flex w-full items-center rounded-lg px-3 py-2 text-left text-sm transition-colors duration-100 {option.value ===

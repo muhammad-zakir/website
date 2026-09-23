@@ -21,7 +21,7 @@
 
 			<!-- Social Links -->
 			<div class="flex items-center gap-3">
-				{#each SOCIAL_LINKS as socialLink}
+				{#each SOCIAL_LINKS as socialLink (socialLink.href)}
 					<a
 						href={socialLink.href}
 						target={socialLink.href.startsWith('mailto:') ? undefined : '_blank'}

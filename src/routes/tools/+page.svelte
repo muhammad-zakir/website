@@ -30,7 +30,7 @@
 		</ScrollReveal>
 
 		<div class="grid gap-4 sm:grid-cols-2">
-			{#each TOOLS as tool, toolIndex}
+			{#each TOOLS as tool, toolIndex (tool.href)}
 				<ScrollReveal delay={toolIndex * 100 + 100}>
 					<a
 						href={tool.href}

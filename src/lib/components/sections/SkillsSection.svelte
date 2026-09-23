@@ -11,7 +11,7 @@
 		</ScrollReveal>
 
 		<div class="space-y-4">
-			{#each SKILL_CATEGORIES as category, categoryIndex}
+			{#each SKILL_CATEGORIES as category, categoryIndex (category.title)}
 				<ScrollReveal delay={categoryIndex * 100 + 100}>
 					<div
 						class="rounded-2xl border border-graphite-600/50 bg-graphite-800/50 p-4 backdrop-blur-sm sm:p-5"
@@ -21,7 +21,7 @@
 							{category.title}
 						</h3>
 						<div class="flex flex-wrap gap-2">
-							{#each category.skills as skill}
+							{#each category.skills as skill, skillIndex (skillIndex)}
 								<span
 									class="inline-block rounded-full border border-graphite-500/50 bg-graphite-600/40 px-3 py-1.5 text-xs font-medium text-graphite-200 transition-all duration-300 hover:border-pastel-300/50 hover:text-pastel-200"
 								>
