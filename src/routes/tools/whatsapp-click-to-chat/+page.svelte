@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import SeoHead from '$lib/components/SeoHead.svelte';
 	import ScrollReveal from '$lib/components/ui/ScrollReveal.svelte';
 	import GlassCard from '$lib/components/ui/GlassCard.svelte';
@@ -104,7 +105,7 @@
 		<ScrollReveal>
 			<div class="mb-8 text-center sm:text-left">
 				<a
-					href="/tools"
+					href={resolve('/tools')}
 					class="mb-4 inline-flex items-center gap-1 text-xs text-graphite-400 transition-colors duration-200 hover:text-pastel-300"
 				>
 					<svg

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import SeoHead from '$lib/components/SeoHead.svelte';
 	import ScrollReveal from '$lib/components/ui/ScrollReveal.svelte';
 	import { TOOLS } from '$lib/constants';
@@ -33,7 +34,7 @@
 			{#each TOOLS as tool, toolIndex (tool.href)}
 				<ScrollReveal delay={toolIndex * 100 + 100}>
 					<a
-						href={tool.href}
+						href={resolve(tool.href)}
 						class="group flex flex-col rounded-2xl border border-graphite-600/50 bg-graphite-800/50 p-5 backdrop-blur-sm transition-all duration-300 hover:border-pastel-300/30 hover:bg-graphite-700/60 sm:p-6"
 					>
 						<span class="mb-3 text-2xl" aria-hidden="true">{tool.icon}</span>

@@ -1,3 +1,5 @@
+import type { RouteId } from '$app/types';
+
 export interface SocialLink {
 	label: string;
 	value: string;
@@ -31,7 +33,7 @@ export interface Education {
 export interface Tool {
 	title: string;
 	description: string;
-	href: string;
+	href: RouteId;
 	icon: string;
 }
 

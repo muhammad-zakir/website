@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { page } from '$app/stores';
 	import { NAVIGATION_LINKS, TOOLS_NAVIGATION_LINKS } from '$lib/constants';
 
@@ -86,7 +87,7 @@
 		<div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
 			<!-- Brand -->
 			<a
-				href="/"
+				href={resolve('/')}
 				class="group flex items-center gap-0.5 text-lg font-bold tracking-tight text-graphite-50 transition-colors duration-300 hover:text-pastel-300"
 				aria-label="Go to homepage"
 			>
@@ -99,7 +100,7 @@
 			<div class="hidden items-center gap-1 md:flex">
 				{#each NAVIGATION_LINKS as link (link.href)}
 					<a
-						href={link.href}
+						href={resolve(link.href)}
 						class="rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200 {isActiveRoute(
 							link.href
 						)
@@ -152,7 +153,7 @@
 							>
 								{#each TOOLS_NAVIGATION_LINKS as toolLink (toolLink.href)}
 									<a
-										href={toolLink.href}
+										href={resolve(toolLink.href)}
 										class="block rounded-lg px-3 py-2.5 text-sm transition-colors duration-200 {isActiveRoute(
 											toolLink.href
 										)
@@ -232,7 +233,7 @@
 	<div class="flex flex-col gap-1 px-4 pt-4 pb-6">
 		{#each NAVIGATION_LINKS as link (link.href)}
 			<a
-				href={link.href}
+				href={resolve(link.href)}
 				class="rounded-lg px-4 py-3 text-base font-medium transition-colors duration-200 {isActiveRoute(
 					link.href
 				)
@@ -275,7 +276,7 @@
 			<div class="ml-4 flex flex-col gap-0.5 border-l border-graphite-700/50 pl-3">
 				{#each TOOLS_NAVIGATION_LINKS as toolLink (toolLink.href)}
 					<a
-						href={toolLink.href}
+						href={resolve(toolLink.href)}
 						class="rounded-lg px-3 py-2.5 text-sm transition-colors duration-200 {isActiveRoute(
 							toolLink.href
 						)

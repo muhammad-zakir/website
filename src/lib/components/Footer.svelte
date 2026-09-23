@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { SOCIAL_LINKS } from '$lib/constants';
 </script>
 
@@ -8,7 +9,7 @@
 			<!-- Brand + Copyright -->
 			<div class="text-center sm:text-left">
 				<a
-					href="/"
+					href={resolve('/')}
 					class="text-lg font-bold tracking-tight text-graphite-50 transition-colors duration-300 hover:text-pastel-300"
 					aria-label="Go to homepage"
 				>
