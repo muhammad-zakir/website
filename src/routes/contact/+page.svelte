@@ -45,7 +45,7 @@
 					<a
 						href={link.href}
 						target={link.href.startsWith('mailto:') ? undefined : '_blank'}
-						rel={link.href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+						rel="external noopener noreferrer"
 						aria-label="{link.label}: {link.value}"
 						class="group flex items-center gap-4 rounded-xl border border-graphite-600/50 bg-graphite-800/50 px-5 py-4 text-left backdrop-blur-sm transition-all duration-300 hover:border-pastel-300/30 hover:bg-graphite-700/60"
 						style="animation: fadeInUp 0.5s ease-out {(linkIndex + 1) * 80 + 200}ms both;"

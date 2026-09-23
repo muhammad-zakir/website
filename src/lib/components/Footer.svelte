@@ -26,7 +26,7 @@
 					<a
 						href={socialLink.href}
 						target={socialLink.href.startsWith('mailto:') ? undefined : '_blank'}
-						rel={socialLink.href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+						rel="external noopener noreferrer"
 						class="group flex h-9 w-9 items-center justify-center rounded-full border border-graphite-600/50 bg-graphite-800/50 transition-all duration-300 hover:border-pastel-300/30 hover:bg-pastel-300/10"
 						aria-label="{socialLink.label}: {socialLink.value}"
 					>

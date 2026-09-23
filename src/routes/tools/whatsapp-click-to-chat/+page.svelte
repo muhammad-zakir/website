@@ -205,7 +205,7 @@
 						<a
 							href={generatedWhatsappLink || '#'}
 							target="_blank"
-							rel="noopener noreferrer"
+							rel="external noopener noreferrer"
 							class="inline-flex flex-1 items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-all duration-300 {generatedWhatsappLink
 								? 'bg-pastel-300 text-graphite-900 hover:bg-pastel-200 hover:shadow-lg hover:shadow-pastel-300/20'
 								: 'cursor-not-allowed bg-graphite-600 text-graphite-400'}"
