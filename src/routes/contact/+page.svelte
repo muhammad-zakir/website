@@ -12,7 +12,9 @@
 	canonicalUrl="https://zakir.id/contact"
 />
 
-<section class="relative flex min-h-screen items-center justify-center px-4 pt-24 pb-16 sm:px-6 lg:px-8">
+<section
+	class="relative flex min-h-screen items-center justify-center px-4 pt-24 pb-16 sm:px-6 lg:px-8"
+>
 	<!-- Decorative background -->
 	<div
 		class="pointer-events-none absolute top-1/2 left-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-10 blur-3xl"
@@ -23,14 +25,15 @@
 	<div class="relative z-10 mx-auto w-full max-w-lg">
 		<ScrollReveal>
 			<div class="text-center">
-				<span class="mb-3 inline-block text-xs font-semibold tracking-[0.3em] text-pastel-300 uppercase">
+				<span
+					class="mb-3 inline-block text-xs font-semibold tracking-[0.3em] text-pastel-300 uppercase"
+				>
 					Let's Connect
 				</span>
-				<h1 class="text-3xl font-bold text-graphite-50 sm:text-4xl md:text-5xl">
-					Get in Touch
-				</h1>
+				<h1 class="text-3xl font-bold text-graphite-50 sm:text-4xl md:text-5xl">Get in Touch</h1>
 				<p class="mt-4 text-sm leading-relaxed text-graphite-300 sm:text-base">
-					I'd love to hear from you. Whether you have a project idea, a question, or just want to say hi — feel free to reach out.
+					I'd love to hear from you. Whether you have a project idea, a question, or just want to
+					say hi — feel free to reach out.
 				</p>
 			</div>
 		</ScrollReveal>
@@ -64,7 +67,9 @@
 						</div>
 						<div class="flex-1">
 							<span class="text-[11px] font-medium text-graphite-400">{link.label}</span>
-							<p class="text-sm font-medium text-graphite-200 transition-colors duration-300 group-hover:text-pastel-300 sm:text-base">
+							<p
+								class="text-sm font-medium text-graphite-200 transition-colors duration-300 group-hover:text-pastel-300 sm:text-base"
+							>
 								{link.value}
 							</p>
 						</div>

@@ -90,7 +90,9 @@
 				class="group flex items-center gap-0.5 text-lg font-bold tracking-tight text-graphite-50 transition-colors duration-300 hover:text-pastel-300"
 				aria-label="Go to homepage"
 			>
-				zakir<span class="text-pastel-300 transition-transform duration-300 group-hover:scale-125">.</span>
+				zakir<span class="text-pastel-300 transition-transform duration-300 group-hover:scale-125"
+					>.</span
+				>
 			</a>
 
 			<!-- Desktop Navigation -->
@@ -98,7 +100,9 @@
 				{#each NAVIGATION_LINKS as link}
 					<a
 						href={link.href}
-						class="rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200 {isActiveRoute(link.href)
+						class="rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200 {isActiveRoute(
+							link.href
+						)
 							? 'text-pastel-300'
 							: 'text-graphite-300 hover:text-graphite-50'}"
 						aria-current={isActiveRoute(link.href) ? 'page' : undefined}
@@ -116,7 +120,9 @@
 				>
 					<button
 						onclick={toggleToolsDropdown}
-						class="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200 {currentPathname.startsWith('/tools')
+						class="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200 {currentPathname.startsWith(
+							'/tools'
+						)
 							? 'text-pastel-300'
 							: 'text-graphite-300 hover:text-graphite-50'}"
 						aria-expanded={isToolsDropdownOpen}
@@ -124,7 +130,9 @@
 					>
 						Tools
 						<svg
-							class="h-3.5 w-3.5 transition-transform duration-200 {isToolsDropdownOpen ? 'rotate-180' : ''}"
+							class="h-3.5 w-3.5 transition-transform duration-200 {isToolsDropdownOpen
+								? 'rotate-180'
+								: ''}"
 							xmlns="http://www.w3.org/2000/svg"
 							fill="none"
 							viewBox="0 0 24 24"
@@ -145,7 +153,9 @@
 								{#each TOOLS_NAVIGATION_LINKS as toolLink}
 									<a
 										href={toolLink.href}
-										class="block rounded-lg px-3 py-2.5 text-sm transition-colors duration-200 {isActiveRoute(toolLink.href)
+										class="block rounded-lg px-3 py-2.5 text-sm transition-colors duration-200 {isActiveRoute(
+											toolLink.href
+										)
 											? 'bg-pastel-300/10 text-pastel-300'
 											: 'text-graphite-300 hover:bg-graphite-700/50 hover:text-graphite-50'}"
 										role="menuitem"
@@ -211,8 +221,10 @@
 			aria-label="Close navigation menu"
 		>
 			<div class="flex h-5 w-5 flex-col items-center justify-center gap-1">
-				<span class="block h-0.5 w-5 translate-y-[3px] rotate-45 rounded-full bg-graphite-100"></span>
-				<span class="block h-0.5 w-5 -translate-y-[3px] -rotate-45 rounded-full bg-graphite-100"></span>
+				<span class="block h-0.5 w-5 translate-y-[3px] rotate-45 rounded-full bg-graphite-100"
+				></span>
+				<span class="block h-0.5 w-5 -translate-y-[3px] -rotate-45 rounded-full bg-graphite-100"
+				></span>
 			</div>
 		</button>
 	</div>
@@ -221,7 +233,9 @@
 		{#each NAVIGATION_LINKS as link}
 			<a
 				href={link.href}
-				class="rounded-lg px-4 py-3 text-base font-medium transition-colors duration-200 {isActiveRoute(link.href)
+				class="rounded-lg px-4 py-3 text-base font-medium transition-colors duration-200 {isActiveRoute(
+					link.href
+				)
 					? 'bg-pastel-300/10 text-pastel-300'
 					: 'text-graphite-300 hover:bg-graphite-700/50 hover:text-graphite-50'}"
 				aria-current={isActiveRoute(link.href) ? 'page' : undefined}
@@ -233,7 +247,9 @@
 
 		<!-- Mobile Tools Expandable -->
 		<button
-			class="flex items-center justify-between rounded-lg px-4 py-3 text-base font-medium transition-colors duration-200 {currentPathname.startsWith('/tools')
+			class="flex items-center justify-between rounded-lg px-4 py-3 text-base font-medium transition-colors duration-200 {currentPathname.startsWith(
+				'/tools'
+			)
 				? 'text-pastel-300'
 				: 'text-graphite-300 hover:bg-graphite-700/50 hover:text-graphite-50'}"
 			onclick={toggleMobileToolsSection}
@@ -241,7 +257,9 @@
 		>
 			Tools
 			<svg
-				class="h-4 w-4 transition-transform duration-200 {isMobileToolsExpanded ? 'rotate-180' : ''}"
+				class="h-4 w-4 transition-transform duration-200 {isMobileToolsExpanded
+					? 'rotate-180'
+					: ''}"
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
 				viewBox="0 0 24 24"
@@ -258,7 +276,9 @@
 				{#each TOOLS_NAVIGATION_LINKS as toolLink}
 					<a
 						href={toolLink.href}
-						class="rounded-lg px-3 py-2.5 text-sm transition-colors duration-200 {isActiveRoute(toolLink.href)
+						class="rounded-lg px-3 py-2.5 text-sm transition-colors duration-200 {isActiveRoute(
+							toolLink.href
+						)
 							? 'text-pastel-300'
 							: 'text-graphite-400 hover:text-graphite-50'}"
 						onclick={closeMobileMenu}
@@ -270,4 +290,3 @@
 		{/if}
 	</div>
 </div>
-

@@ -7,11 +7,7 @@
 		hoverable?: boolean;
 	}
 
-	const {
-		children,
-		class: additionalClasses = '',
-		hoverable = false
-	}: GlassCardProps = $props();
+	const { children, class: additionalClasses = '', hoverable = false }: GlassCardProps = $props();
 </script>
 
 <div

@@ -106,7 +106,15 @@ export const EXPERIENCES: Experience[] = [
 		location: 'Jakarta, ID (Hybrid)',
 		description:
 			'Designed end-to-end architecture encompassing backend, frontend, and infrastructure using AWS. Developed project boilerplates and managed a small team until an official tech lead was recruited.',
-		technologies: ['NodeJS', 'Fastify', 'Svelte', 'Tailwind CSS', 'PostgreSQL', 'AWS', 'GitHub Actions']
+		technologies: [
+			'NodeJS',
+			'Fastify',
+			'Svelte',
+			'Tailwind CSS',
+			'PostgreSQL',
+			'AWS',
+			'GitHub Actions'
+		]
 	},
 	{
 		period: 'Oct 2021 – Jun 2023',
@@ -115,7 +123,17 @@ export const EXPERIENCES: Experience[] = [
 		location: 'Jakarta, ID (Remote for SG)',
 		description:
 			'Integrated third-party POS aggregator APIs from scratch to production. Optimized microservices message handling by replacing unnecessary broker storage with a single Redis key with better failover.',
-		technologies: ['PHP', 'CakePHP', 'Laravel', 'Lumen', 'NodeJS', 'NestJS', 'Svelte', 'Redis', 'RabbitMQ']
+		technologies: [
+			'PHP',
+			'CakePHP',
+			'Laravel',
+			'Lumen',
+			'NodeJS',
+			'NestJS',
+			'Svelte',
+			'Redis',
+			'RabbitMQ'
+		]
 	},
 	{
 		period: 'Nov 2020 – Oct 2021',

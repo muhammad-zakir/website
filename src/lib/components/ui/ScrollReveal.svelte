@@ -42,7 +42,9 @@
 <div
 	bind:this={elementReference}
 	class={additionalClasses}
-	style="opacity: {isVisible ? 1 : 0}; transform: translateY({isVisible ? 0 : 24}px); transition: opacity 0.7s ease-out {delay}ms, transform 0.7s ease-out {delay}ms;"
+	style="opacity: {isVisible ? 1 : 0}; transform: translateY({isVisible
+		? 0
+		: 24}px); transition: opacity 0.7s ease-out {delay}ms, transform 0.7s ease-out {delay}ms;"
 >
 	{@render children()}
 </div>

@@ -15,7 +15,8 @@
 		ogType = 'website'
 	}: SeoHeadProps = $props();
 
-	const fullTitle = title === SITE_NAME ? `${SITE_NAME} — Software Engineer` : `${title} — ${SITE_NAME}`;
+	const fullTitle =
+		title === SITE_NAME ? `${SITE_NAME} — Software Engineer` : `${title} — ${SITE_NAME}`;
 </script>
 
 <svelte:head>
@@ -45,9 +46,6 @@
 		url: SITE_URL,
 		email: 'hi@zakir.id',
 		jobTitle: 'Software Engineer',
-		sameAs: [
-			'https://www.linkedin.com/in/muhammadzakir39',
-			'https://github.com/muhammad-zakir'
-		]
+		sameAs: ['https://www.linkedin.com/in/muhammadzakir39', 'https://github.com/muhammad-zakir']
 	})}</script>`}
 </svelte:head>

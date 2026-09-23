@@ -38,11 +38,7 @@
 							stroke-width="1.5"
 							aria-hidden="true"
 						>
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								d={socialLink.iconPath}
-							/>
+							<path stroke-linecap="round" stroke-linejoin="round" d={socialLink.iconPath} />
 						</svg>
 					</a>
 				{/each}
