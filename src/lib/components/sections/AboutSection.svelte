@@ -47,7 +47,9 @@
 
 		<!-- Location -->
 		<ScrollReveal delay={300} class="mt-6">
-			<div class="flex items-center justify-center gap-2 text-sm text-graphite-400 sm:justify-start">
+			<div
+				class="flex items-center justify-center gap-2 text-sm text-graphite-400 sm:justify-start"
+			>
 				<svg
 					class="h-4 w-4"
 					xmlns="http://www.w3.org/2000/svg"

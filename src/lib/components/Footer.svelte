@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { SOCIAL_LINKS } from '$lib/constants';
 </script>
 
@@ -8,7 +9,7 @@
 			<!-- Brand + Copyright -->
 			<div class="text-center sm:text-left">
 				<a
-					href="/"
+					href={resolve('/')}
 					class="text-lg font-bold tracking-tight text-graphite-50 transition-colors duration-300 hover:text-pastel-300"
 					aria-label="Go to homepage"
 				>
@@ -21,11 +22,11 @@
 
 			<!-- Social Links -->
 			<div class="flex items-center gap-3">
-				{#each SOCIAL_LINKS as socialLink}
+				{#each SOCIAL_LINKS as socialLink (socialLink.href)}
 					<a
 						href={socialLink.href}
 						target={socialLink.href.startsWith('mailto:') ? undefined : '_blank'}
-						rel={socialLink.href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+						rel="external noopener noreferrer"
 						class="group flex h-9 w-9 items-center justify-center rounded-full border border-graphite-600/50 bg-graphite-800/50 transition-all duration-300 hover:border-pastel-300/30 hover:bg-pastel-300/10"
 						aria-label="{socialLink.label}: {socialLink.value}"
 					>
@@ -38,11 +39,7 @@
 							stroke-width="1.5"
 							aria-hidden="true"
 						>
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								d={socialLink.iconPath}
-							/>
+							<path stroke-linecap="round" stroke-linejoin="round" d={socialLink.iconPath} />
 						</svg>
 					</a>
 				{/each}

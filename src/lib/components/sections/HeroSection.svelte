@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	const technologyPills = ['PHP', 'JavaScript / NodeJS', 'Python', 'AWS', 'Docker'];
 </script>
 
@@ -39,7 +40,7 @@
 
 		<!-- Tech Pills -->
 		<div class="animate-fade-in-up mt-6 flex flex-wrap justify-center gap-2 delay-300">
-			{#each technologyPills as technology}
+			{#each technologyPills as technology, technologyIndex (technologyIndex)}
 				<span
 					class="rounded-full border border-graphite-600/50 bg-graphite-700/40 px-3 py-1 text-xs text-graphite-300 transition-colors duration-300 hover:border-pastel-300/50 hover:text-pastel-200"
 				>
@@ -51,7 +52,7 @@
 		<!-- CTA -->
 		<div class="animate-fade-in-up mt-8 flex flex-wrap justify-center gap-3 delay-400">
 			<a
-				href="/contact"
+				href={resolve('/contact')}
 				class="group inline-flex items-center gap-2 rounded-full bg-pastel-300 px-6 py-2.5 text-sm font-semibold text-graphite-900 transition-all duration-300 hover:bg-pastel-200 hover:shadow-lg hover:shadow-pastel-300/20"
 			>
 				Get in touch
@@ -68,7 +69,7 @@
 				</svg>
 			</a>
 			<a
-				href="/tools"
+				href={resolve('/tools')}
 				class="inline-flex items-center gap-2 rounded-full border border-graphite-600 bg-graphite-700/40 px-6 py-2.5 text-sm font-medium text-graphite-200 backdrop-blur-sm transition-all duration-300 hover:border-pastel-300/30 hover:text-pastel-300"
 			>
 				Explore tools

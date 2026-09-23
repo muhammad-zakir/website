@@ -18,13 +18,14 @@
 
 		<!-- Timeline -->
 		<div class="relative">
-			{#each EXPERIENCES as experience, experienceIndex}
+			{#each EXPERIENCES as experience, experienceIndex (`${experience.company}-${experience.period}`)}
 				<ScrollReveal delay={experienceIndex * 60 + 100}>
 					<div class="relative flex gap-4 pb-1">
 						<!-- Timeline dot + line -->
 						<div class="flex flex-col items-center">
 							<div
-								class="mt-1.5 h-3 w-3 flex-shrink-0 rounded-full border-2 border-pastel-300 bg-graphite-900 transition-colors duration-300 {expandedExperienceIndex === experienceIndex
+								class="mt-1.5 h-3 w-3 flex-shrink-0 rounded-full border-2 border-pastel-300 bg-graphite-900 transition-colors duration-300 {expandedExperienceIndex ===
+								experienceIndex
 									? 'bg-pastel-300'
 									: ''}"
 							></div>
@@ -42,18 +43,27 @@
 								aria-controls="experience-details-{experienceIndex}"
 							>
 								<div class="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
-									<span class="text-xs font-medium text-pastel-300 sm:text-sm">{experience.period}</span>
-									<span class="text-[10px] text-graphite-400 sm:text-xs">· {experience.location}</span>
+									<span class="text-xs font-medium text-pastel-300 sm:text-sm"
+										>{experience.period}</span
+									>
+									<span class="text-[10px] text-graphite-400 sm:text-xs"
+										>· {experience.location}</span
+									>
 								</div>
-								<p class="mt-0.5 text-sm leading-tight font-semibold text-graphite-100 sm:text-base">
+								<p
+									class="mt-0.5 text-sm leading-tight font-semibold text-graphite-100 sm:text-base"
+								>
 									{experience.role}
 								</p>
 								<p class="text-xs text-graphite-400 sm:text-sm">{experience.company}</p>
 
 								<!-- Expand hint -->
-								<div class="mt-1 flex items-center gap-1 text-[10px] text-graphite-500 transition-colors duration-200 group-hover:text-pastel-300/60">
+								<div
+									class="mt-1 flex items-center gap-1 text-[10px] text-graphite-500 transition-colors duration-200 group-hover:text-pastel-300/60"
+								>
 									<svg
-										class="h-3 w-3 transition-transform duration-200 {expandedExperienceIndex === experienceIndex
+										class="h-3 w-3 transition-transform duration-200 {expandedExperienceIndex ===
+										experienceIndex
 											? 'rotate-180'
 											: ''}"
 										xmlns="http://www.w3.org/2000/svg"
@@ -84,8 +94,10 @@
 
 									{#if experience.highlights && experience.highlights.length > 0}
 										<div class="grid grid-cols-2 gap-2 sm:grid-cols-4">
-											{#each experience.highlights as highlight}
-												<div class="rounded-xl border border-graphite-600/50 bg-graphite-700/30 px-2 py-2 text-center">
+											{#each experience.highlights as highlight, highlightIndex (highlightIndex)}
+												<div
+													class="rounded-xl border border-graphite-600/50 bg-graphite-700/30 px-2 py-2 text-center"
+												>
 													<span class="text-sm font-bold text-pastel-300">{highlight}</span>
 												</div>
 											{/each}
@@ -94,8 +106,10 @@
 
 									{#if experience.technologies && experience.technologies.length > 0}
 										<div class="flex flex-wrap gap-1.5">
-											{#each experience.technologies as technology}
-												<span class="rounded-full bg-pastel-300/10 px-2.5 py-0.5 text-[11px] font-medium text-pastel-300">
+											{#each experience.technologies as technology, technologyIndex (technologyIndex)}
+												<span
+													class="rounded-full bg-pastel-300/10 px-2.5 py-0.5 text-[11px] font-medium text-pastel-300"
+												>
 													{technology}
 												</span>
 											{/each}

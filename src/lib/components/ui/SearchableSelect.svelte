@@ -1,6 +1,4 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
-
 	interface SelectOption {
 		value: string;
 		label: string;
@@ -124,7 +122,9 @@
 			{selectedOption?.label ?? placeholder}
 		</span>
 		<svg
-			class="h-3.5 w-3.5 shrink-0 text-graphite-400 transition-transform duration-200 {isDropdownOpen ? 'rotate-180' : ''}"
+			class="h-3.5 w-3.5 shrink-0 text-graphite-400 transition-transform duration-200 {isDropdownOpen
+				? 'rotate-180'
+				: ''}"
 			xmlns="http://www.w3.org/2000/svg"
 			fill="none"
 			viewBox="0 0 24 24"
@@ -144,7 +144,9 @@
 		>
 			<!-- Search Input -->
 			<div class="border-b border-graphite-600/30 p-2">
-				<div class="flex items-center gap-2 rounded-lg border border-graphite-600/50 bg-graphite-900/50 px-3 py-2">
+				<div
+					class="flex items-center gap-2 rounded-lg border border-graphite-600/50 bg-graphite-900/50 px-3 py-2"
+				>
 					<svg
 						class="h-3.5 w-3.5 shrink-0 text-graphite-400"
 						xmlns="http://www.w3.org/2000/svg"
@@ -154,14 +156,18 @@
 						stroke-width="2"
 						aria-hidden="true"
 					>
-						<path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+						/>
 					</svg>
 					<input
 						bind:this={inputElement}
 						type="text"
 						bind:value={searchQuery}
 						onkeydown={handleInputKeydown}
-						placeholder={placeholder}
+						{placeholder}
 						class="min-w-0 flex-1 border-none bg-transparent p-0 text-sm text-graphite-100 placeholder:text-graphite-500 focus:ring-0 focus:outline-none"
 						aria-label="Search options"
 						autocomplete="off"
@@ -170,16 +176,13 @@
 			</div>
 
 			<!-- Options List -->
-			<div
-				bind:this={dropdownElement}
-				class="max-h-52 overflow-y-auto p-1.5"
-				role="listbox"
-			>
+			<div bind:this={dropdownElement} class="max-h-52 overflow-y-auto p-1.5" role="listbox">
 				{#if filteredOptions.length > 0}
-					{#each filteredOptions as option, optionIndex}
+					{#each filteredOptions as option, optionIndex (option.value)}
 						<button
 							type="button"
-							class="flex w-full items-center rounded-lg px-3 py-2 text-left text-sm transition-colors duration-100 {option.value === value
+							class="flex w-full items-center rounded-lg px-3 py-2 text-left text-sm transition-colors duration-100 {option.value ===
+							value
 								? 'bg-pastel-300/15 text-pastel-300'
 								: highlightedIndex === optionIndex
 									? 'bg-graphite-700/60 text-graphite-100'

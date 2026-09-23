@@ -15,7 +15,11 @@
 <HeroSection />
 
 <!-- Decorative divider -->
-<div class="mx-auto h-px max-w-3xl" style="background: linear-gradient(90deg, transparent, var(--color-pastel-300), transparent);" aria-hidden="true"></div>
+<div
+	class="mx-auto h-px max-w-3xl"
+	style="background: linear-gradient(90deg, transparent, var(--color-pastel-300), transparent);"
+	aria-hidden="true"
+></div>
 
 <AboutSection />
 <SkillsSection />

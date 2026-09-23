@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { page } from '$app/stores';
 	import { NAVIGATION_LINKS, TOOLS_NAVIGATION_LINKS } from '$lib/constants';
 
@@ -86,19 +87,23 @@
 		<div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
 			<!-- Brand -->
 			<a
-				href="/"
+				href={resolve('/')}
 				class="group flex items-center gap-0.5 text-lg font-bold tracking-tight text-graphite-50 transition-colors duration-300 hover:text-pastel-300"
 				aria-label="Go to homepage"
 			>
-				zakir<span class="text-pastel-300 transition-transform duration-300 group-hover:scale-125">.</span>
+				zakir<span class="text-pastel-300 transition-transform duration-300 group-hover:scale-125"
+					>.</span
+				>
 			</a>
 
 			<!-- Desktop Navigation -->
 			<div class="hidden items-center gap-1 md:flex">
-				{#each NAVIGATION_LINKS as link}
+				{#each NAVIGATION_LINKS as link (link.href)}
 					<a
-						href={link.href}
-						class="rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200 {isActiveRoute(link.href)
+						href={resolve(link.href)}
+						class="rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200 {isActiveRoute(
+							link.href
+						)
 							? 'text-pastel-300'
 							: 'text-graphite-300 hover:text-graphite-50'}"
 						aria-current={isActiveRoute(link.href) ? 'page' : undefined}
@@ -116,7 +121,9 @@
 				>
 					<button
 						onclick={toggleToolsDropdown}
-						class="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200 {currentPathname.startsWith('/tools')
+						class="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200 {currentPathname.startsWith(
+							'/tools'
+						)
 							? 'text-pastel-300'
 							: 'text-graphite-300 hover:text-graphite-50'}"
 						aria-expanded={isToolsDropdownOpen}
@@ -124,7 +131,9 @@
 					>
 						Tools
 						<svg
-							class="h-3.5 w-3.5 transition-transform duration-200 {isToolsDropdownOpen ? 'rotate-180' : ''}"
+							class="h-3.5 w-3.5 transition-transform duration-200 {isToolsDropdownOpen
+								? 'rotate-180'
+								: ''}"
 							xmlns="http://www.w3.org/2000/svg"
 							fill="none"
 							viewBox="0 0 24 24"
@@ -142,10 +151,12 @@
 								class="w-56 rounded-xl border border-graphite-600/50 bg-graphite-800/95 p-1.5 shadow-xl backdrop-blur-md"
 								role="menu"
 							>
-								{#each TOOLS_NAVIGATION_LINKS as toolLink}
+								{#each TOOLS_NAVIGATION_LINKS as toolLink (toolLink.href)}
 									<a
-										href={toolLink.href}
-										class="block rounded-lg px-3 py-2.5 text-sm transition-colors duration-200 {isActiveRoute(toolLink.href)
+										href={resolve(toolLink.href)}
+										class="block rounded-lg px-3 py-2.5 text-sm transition-colors duration-200 {isActiveRoute(
+											toolLink.href
+										)
 											? 'bg-pastel-300/10 text-pastel-300'
 											: 'text-graphite-300 hover:bg-graphite-700/50 hover:text-graphite-50'}"
 										role="menuitem"
@@ -211,17 +222,21 @@
 			aria-label="Close navigation menu"
 		>
 			<div class="flex h-5 w-5 flex-col items-center justify-center gap-1">
-				<span class="block h-0.5 w-5 translate-y-[3px] rotate-45 rounded-full bg-graphite-100"></span>
-				<span class="block h-0.5 w-5 -translate-y-[3px] -rotate-45 rounded-full bg-graphite-100"></span>
+				<span class="block h-0.5 w-5 translate-y-[3px] rotate-45 rounded-full bg-graphite-100"
+				></span>
+				<span class="block h-0.5 w-5 -translate-y-[3px] -rotate-45 rounded-full bg-graphite-100"
+				></span>
 			</div>
 		</button>
 	</div>
 
 	<div class="flex flex-col gap-1 px-4 pt-4 pb-6">
-		{#each NAVIGATION_LINKS as link}
+		{#each NAVIGATION_LINKS as link (link.href)}
 			<a
-				href={link.href}
-				class="rounded-lg px-4 py-3 text-base font-medium transition-colors duration-200 {isActiveRoute(link.href)
+				href={resolve(link.href)}
+				class="rounded-lg px-4 py-3 text-base font-medium transition-colors duration-200 {isActiveRoute(
+					link.href
+				)
 					? 'bg-pastel-300/10 text-pastel-300'
 					: 'text-graphite-300 hover:bg-graphite-700/50 hover:text-graphite-50'}"
 				aria-current={isActiveRoute(link.href) ? 'page' : undefined}
@@ -233,7 +248,9 @@
 
 		<!-- Mobile Tools Expandable -->
 		<button
-			class="flex items-center justify-between rounded-lg px-4 py-3 text-base font-medium transition-colors duration-200 {currentPathname.startsWith('/tools')
+			class="flex items-center justify-between rounded-lg px-4 py-3 text-base font-medium transition-colors duration-200 {currentPathname.startsWith(
+				'/tools'
+			)
 				? 'text-pastel-300'
 				: 'text-graphite-300 hover:bg-graphite-700/50 hover:text-graphite-50'}"
 			onclick={toggleMobileToolsSection}
@@ -241,7 +258,9 @@
 		>
 			Tools
 			<svg
-				class="h-4 w-4 transition-transform duration-200 {isMobileToolsExpanded ? 'rotate-180' : ''}"
+				class="h-4 w-4 transition-transform duration-200 {isMobileToolsExpanded
+					? 'rotate-180'
+					: ''}"
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
 				viewBox="0 0 24 24"
@@ -255,10 +274,12 @@
 
 		{#if isMobileToolsExpanded}
 			<div class="ml-4 flex flex-col gap-0.5 border-l border-graphite-700/50 pl-3">
-				{#each TOOLS_NAVIGATION_LINKS as toolLink}
+				{#each TOOLS_NAVIGATION_LINKS as toolLink (toolLink.href)}
 					<a
-						href={toolLink.href}
-						class="rounded-lg px-3 py-2.5 text-sm transition-colors duration-200 {isActiveRoute(toolLink.href)
+						href={resolve(toolLink.href)}
+						class="rounded-lg px-3 py-2.5 text-sm transition-colors duration-200 {isActiveRoute(
+							toolLink.href
+						)
 							? 'text-pastel-300'
 							: 'text-graphite-400 hover:text-graphite-50'}"
 						onclick={closeMobileMenu}
@@ -270,4 +291,3 @@
 		{/if}
 	</div>
 </div>
-

@@ -20,7 +20,13 @@ export const COUNTRIES: Country[] = [
 	{ name: 'Belarus', phoneCode: '375', flag: '🇧🇾', currencyCode: 'BYN', currencySymbol: 'Br' },
 	{ name: 'Belgium', phoneCode: '32', flag: '🇧🇪', currencyCode: 'EUR', currencySymbol: '€' },
 	{ name: 'Bolivia', phoneCode: '591', flag: '🇧🇴', currencyCode: 'BOB', currencySymbol: 'Bs.' },
-	{ name: 'Bosnia and Herzegovina', phoneCode: '387', flag: '🇧🇦', currencyCode: 'BAM', currencySymbol: 'KM' },
+	{
+		name: 'Bosnia and Herzegovina',
+		phoneCode: '387',
+		flag: '🇧🇦',
+		currencyCode: 'BAM',
+		currencySymbol: 'KM'
+	},
 	{ name: 'Brazil', phoneCode: '55', flag: '🇧🇷', currencyCode: 'BRL', currencySymbol: 'R$' },
 	{ name: 'Brunei', phoneCode: '673', flag: '🇧🇳', currencyCode: 'BND', currencySymbol: 'B$' },
 	{ name: 'Bulgaria', phoneCode: '359', flag: '🇧🇬', currencyCode: 'BGN', currencySymbol: 'лв' },
@@ -33,9 +39,21 @@ export const COUNTRIES: Country[] = [
 	{ name: 'Croatia', phoneCode: '385', flag: '🇭🇷', currencyCode: 'EUR', currencySymbol: '€' },
 	{ name: 'Cuba', phoneCode: '53', flag: '🇨🇺', currencyCode: 'CUP', currencySymbol: '$' },
 	{ name: 'Cyprus', phoneCode: '357', flag: '🇨🇾', currencyCode: 'EUR', currencySymbol: '€' },
-	{ name: 'Czech Republic', phoneCode: '420', flag: '🇨🇿', currencyCode: 'CZK', currencySymbol: 'Kč' },
+	{
+		name: 'Czech Republic',
+		phoneCode: '420',
+		flag: '🇨🇿',
+		currencyCode: 'CZK',
+		currencySymbol: 'Kč'
+	},
 	{ name: 'Denmark', phoneCode: '45', flag: '🇩🇰', currencyCode: 'DKK', currencySymbol: 'kr' },
-	{ name: 'Dominican Republic', phoneCode: '1809', flag: '🇩🇴', currencyCode: 'DOP', currencySymbol: 'RD$' },
+	{
+		name: 'Dominican Republic',
+		phoneCode: '1809',
+		flag: '🇩🇴',
+		currencyCode: 'DOP',
+		currencySymbol: 'RD$'
+	},
 	{ name: 'Ecuador', phoneCode: '593', flag: '🇪🇨', currencyCode: 'USD', currencySymbol: '$' },
 	{ name: 'Egypt', phoneCode: '20', flag: '🇪🇬', currencyCode: 'EGP', currencySymbol: 'E£' },
 	{ name: 'Estonia', phoneCode: '372', flag: '🇪🇪', currencyCode: 'EUR', currencySymbol: '€' },
@@ -95,7 +113,13 @@ export const COUNTRIES: Country[] = [
 	{ name: 'Qatar', phoneCode: '974', flag: '🇶🇦', currencyCode: 'QAR', currencySymbol: 'ر.ق' },
 	{ name: 'Romania', phoneCode: '40', flag: '🇷🇴', currencyCode: 'RON', currencySymbol: 'lei' },
 	{ name: 'Russia', phoneCode: '7', flag: '🇷🇺', currencyCode: 'RUB', currencySymbol: '₽' },
-	{ name: 'Saudi Arabia', phoneCode: '966', flag: '🇸🇦', currencyCode: 'SAR', currencySymbol: 'ر.س' },
+	{
+		name: 'Saudi Arabia',
+		phoneCode: '966',
+		flag: '🇸🇦',
+		currencyCode: 'SAR',
+		currencySymbol: 'ر.س'
+	},
 	{ name: 'Serbia', phoneCode: '381', flag: '🇷🇸', currencyCode: 'RSD', currencySymbol: 'din.' },
 	{ name: 'Singapore', phoneCode: '65', flag: '🇸🇬', currencyCode: 'SGD', currencySymbol: 'S$' },
 	{ name: 'Slovakia', phoneCode: '421', flag: '🇸🇰', currencyCode: 'EUR', currencySymbol: '€' },

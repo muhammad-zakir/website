@@ -15,7 +15,23 @@
 		ogType = 'website'
 	}: SeoHeadProps = $props();
 
-	const fullTitle = title === SITE_NAME ? `${SITE_NAME} — Software Engineer` : `${title} — ${SITE_NAME}`;
+	const fullTitle =
+		title === SITE_NAME ? `${SITE_NAME} — Software Engineer` : `${title} — ${SITE_NAME}`;
+
+	const structuredData = {
+		'@context': 'https://schema.org',
+		'@type': 'Person',
+		name: 'Muhammad Zakir',
+		url: SITE_URL,
+		email: 'hi@zakir.id',
+		jobTitle: 'Software Engineer',
+		sameAs: ['https://www.linkedin.com/in/muhammadzakir39', 'https://github.com/muhammad-zakir']
+	};
+
+	// Built here rather than in the markup, where a `<script>` inside a template literal breaks the
+	// ESLint Svelte parser. The closing tag is split so it doesn't end this component's own script.
+	const structuredDataTag =
+		`<script type="application/ld+json">${JSON.stringify(structuredData)}<` + `/script>`;
 </script>
 
 <svelte:head>
@@ -38,16 +54,5 @@
 	<meta name="twitter:description" content={description} />
 
 	<!-- JSON-LD Structured Data -->
-	{@html `<script type="application/ld+json">${JSON.stringify({
-		'@context': 'https://schema.org',
-		'@type': 'Person',
-		name: 'Muhammad Zakir',
-		url: SITE_URL,
-		email: 'hi@zakir.id',
-		jobTitle: 'Software Engineer',
-		sameAs: [
-			'https://www.linkedin.com/in/muhammadzakir39',
-			'https://github.com/muhammad-zakir'
-		]
-	})}</script>`}
+	{@html structuredDataTag}
 </svelte:head>
