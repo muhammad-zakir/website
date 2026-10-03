@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import { browser } from '$app/environment';
+	import { browser } from '$app/env';
 	import { SvelteMap } from 'svelte/reactivity';
 	import lzString from 'lz-string';
-	import SeoHead from '$lib/components/SeoHead.svelte';
-	import ScrollReveal from '$lib/components/ui/ScrollReveal.svelte';
-	import GlassCard from '$lib/components/ui/GlassCard.svelte';
-	import SearchableSelect from '$lib/components/ui/SearchableSelect.svelte';
-	import { CURRENCIES, DEFAULT_CURRENCY_CODE } from '$lib/countries';
-	import type { BillPerson, BillItem, BillState } from '$lib/types';
+	import SeoHead from '#lib/components/SeoHead.svelte';
+	import ScrollReveal from '#lib/components/ui/ScrollReveal.svelte';
+	import GlassCard from '#lib/components/ui/GlassCard.svelte';
+	import SearchableSelect from '#lib/components/ui/SearchableSelect.svelte';
+	import { CURRENCIES, DEFAULT_CURRENCY_CODE } from '#lib/countries.js';
+	import type { BillPerson, BillItem, BillState } from '#lib/types.js';
 
 	const { compressToEncodedURIComponent, decompressFromEncodedURIComponent } = lzString;
 

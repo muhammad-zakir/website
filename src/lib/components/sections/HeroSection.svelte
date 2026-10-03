@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	const technologyPills = ['PHP', 'JavaScript / NodeJS', 'Python', 'AWS', 'Docker'];
+	const technologyPills = ['TypeScript', 'NestJS', 'Next.js', 'SvelteKit', 'PHP', 'Kubernetes'];
 </script>
 
 <section
@@ -34,8 +34,8 @@
 		<p
 			class="animate-fade-in-up mt-4 max-w-lg text-base leading-relaxed font-light text-graphite-300 delay-200 sm:mt-6 sm:text-lg md:text-xl"
 		>
-			A seasoned software engineer with 7+ years of experience building scalable backend systems and
-			full-stack applications.
+			A full-stack engineer with 8+ years of experience building backend systems, web applications,
+			and the pipelines that ship them.
 		</p>
 
 		<!-- Tech Pills -->

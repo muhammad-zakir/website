@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import { fade } from 'svelte/transition';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 
 	interface PageTransitionProps {
 		children: Snippet;
@@ -10,7 +10,7 @@
 	const { children }: PageTransitionProps = $props();
 </script>
 
-{#key $page.url.pathname}
+{#key page.url.pathname}
 	<div in:fade={{ duration: 200, delay: 100 }} out:fade={{ duration: 100 }}>
 		{@render children()}
 	</div>

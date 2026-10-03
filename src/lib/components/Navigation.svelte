@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import { page } from '$app/stores';
-	import { NAVIGATION_LINKS, TOOLS_NAVIGATION_LINKS } from '$lib/constants';
+	import { page } from '$app/state';
+	import { NAVIGATION_LINKS, TOOLS_NAVIGATION_LINKS } from '#lib/constants.js';
 
 	let isMobileMenuOpen = $state(false);
 	let isToolsDropdownOpen = $state(false);
@@ -10,7 +10,7 @@
 	let isNavigationVisible = $state(true);
 	let hasScrolled = $state(false);
 
-	const currentPathname = $derived($page.url.pathname);
+	const currentPathname = $derived(page.url.pathname);
 
 	function isActiveRoute(href: string): boolean {
 		if (href === '/') return currentPathname === '/';

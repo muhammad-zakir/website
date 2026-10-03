@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import SeoHead from '$lib/components/SeoHead.svelte';
-	import ScrollReveal from '$lib/components/ui/ScrollReveal.svelte';
-	import GlassCard from '$lib/components/ui/GlassCard.svelte';
-	import SearchableSelect from '$lib/components/ui/SearchableSelect.svelte';
-	import { COUNTRIES, DEFAULT_PHONE_COUNTRY_CODE } from '$lib/countries';
+	import SeoHead from '#lib/components/SeoHead.svelte';
+	import ScrollReveal from '#lib/components/ui/ScrollReveal.svelte';
+	import GlassCard from '#lib/components/ui/GlassCard.svelte';
+	import SearchableSelect from '#lib/components/ui/SearchableSelect.svelte';
+	import { COUNTRIES, DEFAULT_PHONE_COUNTRY_CODE } from '#lib/countries.js';
 
 	const countryCodeOptions = COUNTRIES.map((country) => ({
 		value: country.phoneCode,

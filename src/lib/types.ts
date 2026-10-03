@@ -30,6 +30,13 @@ export interface Education {
 	description?: string;
 }
 
+export interface Project {
+	title: string;
+	description: string;
+	href: string;
+	technologies: string[];
+}
+
 export interface Tool {
 	title: string;
 	description: string;

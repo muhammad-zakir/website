@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from '$lib/constants';
+	import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from '#lib/constants.js';
 
 	interface SeoHeadProps {
 		title?: string;
@@ -15,23 +15,27 @@
 		ogType = 'website'
 	}: SeoHeadProps = $props();
 
-	const fullTitle =
-		title === SITE_NAME ? `${SITE_NAME} — Software Engineer` : `${title} — ${SITE_NAME}`;
+	const fullTitle = $derived(
+		title === SITE_NAME ? `${SITE_NAME} — Full Stack Engineer` : `${title} — ${SITE_NAME}`
+	);
 
 	const structuredData = {
 		'@context': 'https://schema.org',
 		'@type': 'Person',
 		name: 'Muhammad Zakir',
 		url: SITE_URL,
-		email: 'hi@zakir.id',
-		jobTitle: 'Software Engineer',
+		email: 'zakir@itrium.id',
+		jobTitle: 'Full Stack Engineer',
 		sameAs: ['https://www.linkedin.com/in/muhammadzakir39', 'https://github.com/muhammad-zakir']
 	};
 
-	// Built here rather than in the markup, where a `<script>` inside a template literal breaks the
-	// ESLint Svelte parser. The closing tag is split so it doesn't end this component's own script.
-	const structuredDataTag =
-		`<script type="application/ld+json">${JSON.stringify(structuredData)}<` + `/script>`;
+	// Rendered as text inside a script element rather than through `{@html}`. Escaping `<`, `>` and
+	// `&` as JSON unicode escapes keeps the text from ever closing the tag early, and leaves the JSON
+	// itself unchanged once parsed.
+	const structuredDataJson = JSON.stringify(structuredData)
+		.replace(/</g, '\\u003c')
+		.replace(/>/g, '\\u003e')
+		.replace(/&/g, '\\u0026');
 </script>
 
 <svelte:head>
@@ -54,5 +58,5 @@
 	<meta name="twitter:description" content={description} />
 
 	<!-- JSON-LD Structured Data -->
-	{@html structuredDataTag}
+	<svelte:element this={"script"} type="application/ld+json">{structuredDataJson}</svelte:element>
 </svelte:head>

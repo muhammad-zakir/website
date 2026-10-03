@@ -1,14 +1,14 @@
 <script lang="ts">
-	import SeoHead from '$lib/components/SeoHead.svelte';
-	import ScrollReveal from '$lib/components/ui/ScrollReveal.svelte';
-	import { SOCIAL_LINKS } from '$lib/constants';
+	import SeoHead from '#lib/components/SeoHead.svelte';
+	import ScrollReveal from '#lib/components/ui/ScrollReveal.svelte';
+	import { SOCIAL_LINKS } from '#lib/constants.js';
 
 	const contactLinks = SOCIAL_LINKS.filter((link) => link.label !== 'Website');
 </script>
 
 <SeoHead
 	title="Contact"
-	description="Get in touch with Muhammad Zakir — Software Engineer. Let's build something great together."
+	description="Get in touch with Muhammad Zakir — Full Stack Engineer. Let's build something great together."
 	canonicalUrl="https://zakir.id/contact"
 />
 
@@ -93,7 +93,7 @@
 		<ScrollReveal delay={500} class="mt-8">
 			<div class="text-center">
 				<a
-					href="mailto:hi@zakir.id"
+					href="mailto:zakir@itrium.id"
 					class="group inline-flex items-center gap-2 rounded-full bg-pastel-300 px-8 py-3 text-sm font-semibold text-graphite-900 transition-all duration-300 hover:bg-pastel-200 hover:shadow-lg hover:shadow-pastel-300/20"
 				>
 					<svg
