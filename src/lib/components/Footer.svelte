@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import { SOCIAL_LINKS } from '$lib/constants';
+	import { SOCIAL_LINKS } from '#lib/constants.js';
 </script>
 
 <footer class="border-t border-graphite-700/40 bg-graphite-950/50">

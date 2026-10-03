@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { EXPERIENCES, EDUCATION } from '$lib/constants';
-	import ScrollReveal from '$lib/components/ui/ScrollReveal.svelte';
-	import SectionHeading from '$lib/components/ui/SectionHeading.svelte';
+	import { EXPERIENCES, EDUCATION } from '#lib/constants.js';
+	import ScrollReveal from '#lib/components/ui/ScrollReveal.svelte';
+	import SectionHeading from '#lib/components/ui/SectionHeading.svelte';
 
 	let expandedExperienceIndex = $state<number | null>(null);
 

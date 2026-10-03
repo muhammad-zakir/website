@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { SKILL_CATEGORIES } from '$lib/constants';
-	import ScrollReveal from '$lib/components/ui/ScrollReveal.svelte';
-	import SectionHeading from '$lib/components/ui/SectionHeading.svelte';
+	import { SKILL_CATEGORIES } from '#lib/constants.js';
+	import ScrollReveal from '#lib/components/ui/ScrollReveal.svelte';
+	import SectionHeading from '#lib/components/ui/SectionHeading.svelte';
 </script>
 
 <section class="bg-graphite-950/30 px-4 py-20 sm:px-6 lg:px-8" aria-labelledby="skills-heading">

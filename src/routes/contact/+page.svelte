@@ -1,7 +1,7 @@
 <script lang="ts">
-	import SeoHead from '$lib/components/SeoHead.svelte';
-	import ScrollReveal from '$lib/components/ui/ScrollReveal.svelte';
-	import { SOCIAL_LINKS } from '$lib/constants';
+	import SeoHead from '#lib/components/SeoHead.svelte';
+	import ScrollReveal from '#lib/components/ui/ScrollReveal.svelte';
+	import { SOCIAL_LINKS } from '#lib/constants.js';
 
 	const contactLinks = SOCIAL_LINKS.filter((link) => link.label !== 'Website');
 </script>

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import SeoHead from '$lib/components/SeoHead.svelte';
-	import ScrollReveal from '$lib/components/ui/ScrollReveal.svelte';
-	import { TOOLS } from '$lib/constants';
+	import SeoHead from '#lib/components/SeoHead.svelte';
+	import ScrollReveal from '#lib/components/ui/ScrollReveal.svelte';
+	import { TOOLS } from '#lib/constants.js';
 </script>
 
 <SeoHead

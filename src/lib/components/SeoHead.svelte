@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from '$lib/constants';
+	import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from '#lib/constants.js';
 
 	interface SeoHeadProps {
 		title?: string;

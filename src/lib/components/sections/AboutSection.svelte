@@ -1,7 +1,7 @@
 <script lang="ts">
-	import ScrollReveal from '$lib/components/ui/ScrollReveal.svelte';
-	import SectionHeading from '$lib/components/ui/SectionHeading.svelte';
-	import GlassCard from '$lib/components/ui/GlassCard.svelte';
+	import ScrollReveal from '#lib/components/ui/ScrollReveal.svelte';
+	import SectionHeading from '#lib/components/ui/SectionHeading.svelte';
+	import GlassCard from '#lib/components/ui/GlassCard.svelte';
 </script>
 
 <section class="px-4 py-20 sm:px-6 lg:px-8" aria-labelledby="about-heading">
