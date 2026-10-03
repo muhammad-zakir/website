@@ -1,6 +1,6 @@
 # zakir.id
 
-Personal portfolio and tools site for Muhammad Zakir — Software Engineer.
+Personal portfolio and tools site for Muhammad Zakir — Full Stack Engineer.
 
 Live at [zakir.id](https://zakir.id).
 

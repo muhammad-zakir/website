@@ -4,11 +4,12 @@
 	import AboutSection from '#lib/components/sections/AboutSection.svelte';
 	import SkillsSection from '#lib/components/sections/SkillsSection.svelte';
 	import ExperienceSection from '#lib/components/sections/ExperienceSection.svelte';
+	import ProjectsSection from '#lib/components/sections/ProjectsSection.svelte';
 </script>
 
 <SeoHead
 	title="Zakir"
-	description="Personal portfolio by Muhammad Zakir — Software Engineer with 7+ years of experience building scalable backend systems and full-stack applications."
+	description="Personal portfolio by Muhammad Zakir — Full Stack Engineer with 8+ years of experience building scalable backend systems and full-stack applications."
 	canonicalUrl="https://zakir.id"
 />
 
@@ -24,3 +25,4 @@
 <AboutSection />
 <SkillsSection />
 <ExperienceSection />
+<ProjectsSection />

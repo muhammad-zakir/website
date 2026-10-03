@@ -1,10 +1,10 @@
-import type { SocialLink, SkillCategory, Experience, Education, Tool } from './types';
+import type { SocialLink, SkillCategory, Experience, Education, Project, Tool } from './types';
 
 /* ─── Site Metadata ─── */
 export const SITE_NAME = 'Zakir';
-export const SITE_TITLE = 'Zakir — Software Engineer';
+export const SITE_TITLE = 'Zakir — Full Stack Engineer';
 export const SITE_DESCRIPTION =
-	'Personal portfolio and tools by Muhammad Zakir — Software Engineer with 7+ years of experience building scalable backend systems and full-stack applications.';
+	'Personal portfolio and tools by Muhammad Zakir — Full Stack Engineer with 8+ years of experience building scalable backend systems and full-stack applications.';
 export const SITE_URL = 'https://zakir.id';
 export const SITE_AUTHOR = 'Muhammad Zakir';
 
@@ -12,8 +12,8 @@ export const SITE_AUTHOR = 'Muhammad Zakir';
 export const SOCIAL_LINKS: SocialLink[] = [
 	{
 		label: 'Email',
-		value: 'hi@zakir.id',
-		href: 'mailto:hi@zakir.id',
+		value: 'zakir@itrium.id',
+		href: 'mailto:zakir@itrium.id',
 		iconPath:
 			'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'
 	},
@@ -49,8 +49,14 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
 			'PHP (CakePHP, CodeIgniter, Laravel, Lumen)',
 			'Node.js (Adonis, Express, Fastify, NestJS)',
 			'Python (Celery, Flask)',
+			'Rust (Tauri)',
 			'Elixir (Phoenix)'
 		]
+	},
+	{
+		title: 'Data',
+		icon: '▤',
+		skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'RabbitMQ', 'Prisma']
 	},
 	{
 		title: 'Frontend',
@@ -72,22 +78,54 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
 			'AWS (App Runner, CloudFront, EC2, IAM, Lambda, RDS, S3, WAF)',
 			'Cloudflare (Workers, Pages)',
 			'Docker',
+			'Kubernetes (Rancher)',
+			'Jenkins',
 			'GitHub Actions',
-			'Linux',
-			'CI/CD'
+			'HashiCorp Vault',
+			'Apache APISIX',
+			'Logto',
+			'Sentry',
+			'Linux'
 		]
+	},
+	{
+		title: 'Testing',
+		icon: '✓',
+		skills: ['Vitest', 'Jest', 'Playwright', 'Testcontainers']
 	}
 ];
 
 /* ─── Experience Timeline ─── */
 export const EXPERIENCES: Experience[] = [
 	{
+		period: 'Aug 2026 – Present',
+		role: 'Full Stack Engineer',
+		company: 'Confidential',
+		location: 'Jakarta, ID (On-site)',
+		description:
+			'Built a multi-tenant maintenance management backend from scratch, with tenant isolation enforced by PostgreSQL row-level security and 99% test coverage, and shipped it to self-hosted Kubernetes. Initiated the shared engineering handbook the team works from, introduced continuous integration to the core operations API, and fixed financial calculation bugs in production.',
+		technologies: [
+			'TypeScript',
+			'NestJS',
+			'Next.js',
+			'SvelteKit',
+			'Prisma',
+			'PostgreSQL',
+			'Redis',
+			'Logto',
+			'Docker',
+			'Kubernetes',
+			'Jenkins',
+			'GitHub Actions'
+		]
+	},
+	{
 		period: 'Jun 2025 – Mar 2026',
 		role: 'Senior Software Engineer',
 		company: 'Silentmode Sdn. Bhd.',
 		location: 'Selangor, MY (Remote)',
 		description:
-			'Increased unit test coverage for a large legacy codebase. Optimized code style standardization and conducted peer reviews for every team member.',
+			'Reduced AWS costs for file archives with a leaner storage infrastructure. Increased unit test coverage for a large legacy codebase, standardized code style, and reviewed every team member’s code.',
 		technologies: ['PHP', 'Laravel', 'NodeJS', 'NestJS', 'Vue', 'Bootstrap']
 	},
 	{
@@ -181,6 +219,38 @@ export const EDUCATION: Education = {
 	description:
 		'Laboratory Assistant at Information Technology Laboratory from the 3rd term until graduation. Started web development with Python and Flask.'
 };
+
+/* ─── Projects ─── */
+export const PROJECTS: Project[] = [
+	{
+		title: 'Honk',
+		description:
+			'A cross-platform soundboard: bind sounds to global hotkeys and fire them from a macOS menu bar popover. No accounts, no analytics, no network requests.',
+		href: 'https://github.com/itriumid/honk',
+		technologies: ['Rust', 'Tauri', 'SvelteKit']
+	},
+	{
+		title: 'Hindsight',
+		description:
+			'Keeps the last few minutes of what was said, up to three hours, in memory, and saves a clip when you press a hotkey. Nothing leaves your computer.',
+		href: 'https://github.com/itriumid/hindsight',
+		technologies: ['Rust', 'Tauri', 'SvelteKit']
+	},
+	{
+		title: 'Palettes',
+		description:
+			'The shared color palettes behind those applications, with a contrast check that holds every palette to WCAG AA before it can be published.',
+		href: 'https://github.com/itriumid/palettes',
+		technologies: ['Svelte', 'npm']
+	},
+	{
+		title: 'Agent Handbook',
+		description:
+			'The conventions every AI coding agent follows across these projects, enforced through repository rulesets and pull request checks.',
+		href: 'https://github.com/itriumid/agent-handbook',
+		technologies: ['GitHub Actions', 'Markdown']
+	}
+];
 
 /* ─── Tools ─── */
 export const TOOLS: Tool[] = [

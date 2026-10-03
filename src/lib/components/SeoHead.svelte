@@ -16,7 +16,7 @@
 	}: SeoHeadProps = $props();
 
 	const fullTitle = $derived(
-		title === SITE_NAME ? `${SITE_NAME} — Software Engineer` : `${title} — ${SITE_NAME}`
+		title === SITE_NAME ? `${SITE_NAME} — Full Stack Engineer` : `${title} — ${SITE_NAME}`
 	);
 
 	const structuredData = {
@@ -24,8 +24,8 @@
 		'@type': 'Person',
 		name: 'Muhammad Zakir',
 		url: SITE_URL,
-		email: 'hi@zakir.id',
-		jobTitle: 'Software Engineer',
+		email: 'zakir@itrium.id',
+		jobTitle: 'Full Stack Engineer',
 		sameAs: ['https://www.linkedin.com/in/muhammadzakir39', 'https://github.com/muhammad-zakir']
 	};
 

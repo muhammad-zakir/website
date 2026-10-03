@@ -13,14 +13,20 @@
 		<ScrollReveal delay={100}>
 			<div class="space-y-4 text-center sm:text-left">
 				<p class="text-sm leading-relaxed text-graphite-300 sm:text-base">
-					I'm a seasoned software engineer that focuses mainly on the back-end side. My expertise
-					spans PHP with CodeIgniter or Laravel, JavaScript/TypeScript with Adonis, Fastify, NestJS,
-					and on the frontend with React, Svelte, and Vue. I also have experience with Python using
+					I'm a full-stack engineer who started on the back end and still leans that way. These days
+					I work with TypeScript across NestJS, Next.js, and SvelteKit, and before that spent years
+					with PHP (CodeIgniter, Laravel), Node.js (Adonis, Fastify), Vue, and a bit of Python with
 					Flask and Celery.
 				</p>
 				<p class="text-sm leading-relaxed text-graphite-300 sm:text-base">
-					Recently, <span class="font-medium text-pastel-300">Elixir</span> with Phoenix, and
-					<span class="font-medium text-pastel-300">Rust</span> have piqued my interest.
+					I care most about the parts that let a team ship safely: database design, continuous
+					integration, infrastructure, and the conventions everyone works from.
+				</p>
+				<p class="text-sm leading-relaxed text-graphite-300 sm:text-base">
+					Outside work I build small, free applications under
+					<span class="font-medium text-pastel-300">Itrium</span>, which got me writing
+					<span class="font-medium text-pastel-300">Rust</span>.
+					<span class="font-medium text-pastel-300">Elixir</span> with Phoenix is next on the list.
 				</p>
 			</div>
 		</ScrollReveal>
@@ -30,15 +36,15 @@
 			<GlassCard>
 				<div class="grid grid-cols-3 gap-3 sm:gap-4">
 					<div class="text-center">
-						<span class="text-2xl font-bold text-pastel-300 sm:text-3xl">7+</span>
-						<p class="mt-1 text-xs text-graphite-400">Years Exp.</p>
+						<span class="text-2xl font-bold text-pastel-300 sm:text-3xl">8+</span>
+						<p class="mt-1 text-xs text-graphite-400">Years</p>
 					</div>
 					<div class="text-center">
-						<span class="text-2xl font-bold text-pastel-300 sm:text-3xl">8</span>
+						<span class="text-2xl font-bold text-pastel-300 sm:text-3xl">9</span>
 						<p class="mt-1 text-xs text-graphite-400">Companies</p>
 					</div>
 					<div class="text-center">
-						<span class="text-2xl font-bold text-pastel-300 sm:text-3xl">15+</span>
+						<span class="text-2xl font-bold text-pastel-300 sm:text-3xl">30+</span>
 						<p class="mt-1 text-xs text-graphite-400">Technologies</p>
 					</div>
 				</div>
