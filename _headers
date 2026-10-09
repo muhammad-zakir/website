@@ -1,0 +1,6 @@
+# Cloudflare adds its Web Analytics script to any page it is allowed to change, and
+# no-transform on Cache-Control tells it not to. That keeps zakir.id free of Cloudflare's
+# analytics whatever the dashboard says. Everything else in the value is the default for
+# pages, to always check for a newer one.
+/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
