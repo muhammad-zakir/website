@@ -1,11 +1,9 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
-	import { NAVIGATION_LINKS, TOOLS_NAVIGATION_LINKS } from '#lib/constants.js';
+	import { NAVIGATION_LINKS, TOOLS_URL } from '#lib/constants.js';
 
 	let isMobileMenuOpen = $state(false);
-	let isToolsDropdownOpen = $state(false);
-	let isMobileToolsExpanded = $state(false);
 	let previousScrollY = $state(0);
 	let isNavigationVisible = $state(true);
 	let hasScrolled = $state(false);
@@ -19,30 +17,10 @@
 
 	function toggleMobileMenu() {
 		isMobileMenuOpen = !isMobileMenuOpen;
-		if (!isMobileMenuOpen) {
-			isMobileToolsExpanded = false;
-		}
 	}
 
 	function closeMobileMenu() {
 		isMobileMenuOpen = false;
-		isMobileToolsExpanded = false;
-	}
-
-	function handleToolsDropdownEnter() {
-		isToolsDropdownOpen = true;
-	}
-
-	function handleToolsDropdownLeave() {
-		isToolsDropdownOpen = false;
-	}
-
-	function toggleToolsDropdown() {
-		isToolsDropdownOpen = !isToolsDropdownOpen;
-	}
-
-	function toggleMobileToolsSection() {
-		isMobileToolsExpanded = !isMobileToolsExpanded;
 	}
 
 	$effect(() => {
@@ -52,7 +30,6 @@
 
 			if (currentScrollY > previousScrollY && currentScrollY > 100) {
 				isNavigationVisible = false;
-				isToolsDropdownOpen = false;
 			} else {
 				isNavigationVisible = true;
 			}
@@ -112,63 +89,13 @@
 					</a>
 				{/each}
 
-				<!-- Tools Dropdown -->
-				<div
-					class="relative"
-					role="none"
-					onmouseenter={handleToolsDropdownEnter}
-					onmouseleave={handleToolsDropdownLeave}
+				<a
+					href={TOOLS_URL}
+					rel="external"
+					class="rounded-lg px-3 py-2 text-sm font-medium text-graphite-300 transition-colors duration-200 hover:text-graphite-50"
 				>
-					<button
-						onclick={toggleToolsDropdown}
-						class="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200 {currentPathname.startsWith(
-							'/tools'
-						)
-							? 'text-pastel-300'
-							: 'text-graphite-300 hover:text-graphite-50'}"
-						aria-expanded={isToolsDropdownOpen}
-						aria-haspopup="true"
-					>
-						Tools
-						<svg
-							class="h-3.5 w-3.5 transition-transform duration-200 {isToolsDropdownOpen
-								? 'rotate-180'
-								: ''}"
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-							stroke="currentColor"
-							stroke-width="2"
-							aria-hidden="true"
-						>
-							<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-						</svg>
-					</button>
-
-					{#if isToolsDropdownOpen}
-						<div class="absolute top-full right-0 pt-1">
-							<div
-								class="w-56 rounded-xl border border-graphite-600/50 bg-graphite-800/95 p-1.5 shadow-xl backdrop-blur-md"
-								role="menu"
-							>
-								{#each TOOLS_NAVIGATION_LINKS as toolLink (toolLink.href)}
-									<a
-										href={resolve(toolLink.href)}
-										class="block rounded-lg px-3 py-2.5 text-sm transition-colors duration-200 {isActiveRoute(
-											toolLink.href
-										)
-											? 'bg-pastel-300/10 text-pastel-300'
-											: 'text-graphite-300 hover:bg-graphite-700/50 hover:text-graphite-50'}"
-										role="menuitem"
-										onclick={() => (isToolsDropdownOpen = false)}
-									>
-										{toolLink.label}
-									</a>
-								{/each}
-							</div>
-						</div>
-					{/if}
-				</div>
+					Tools
+				</a>
 			</div>
 
 			<!-- Mobile Hamburger -->
@@ -246,48 +173,13 @@
 			</a>
 		{/each}
 
-		<!-- Mobile Tools Expandable -->
-		<button
-			class="flex items-center justify-between rounded-lg px-4 py-3 text-base font-medium transition-colors duration-200 {currentPathname.startsWith(
-				'/tools'
-			)
-				? 'text-pastel-300'
-				: 'text-graphite-300 hover:bg-graphite-700/50 hover:text-graphite-50'}"
-			onclick={toggleMobileToolsSection}
-			aria-expanded={isMobileToolsExpanded}
+		<a
+			href={TOOLS_URL}
+			rel="external"
+			class="rounded-lg px-4 py-3 text-base font-medium text-graphite-300 transition-colors duration-200 hover:bg-graphite-700/50 hover:text-graphite-50"
+			onclick={closeMobileMenu}
 		>
 			Tools
-			<svg
-				class="h-4 w-4 transition-transform duration-200 {isMobileToolsExpanded
-					? 'rotate-180'
-					: ''}"
-				xmlns="http://www.w3.org/2000/svg"
-				fill="none"
-				viewBox="0 0 24 24"
-				stroke="currentColor"
-				stroke-width="2"
-				aria-hidden="true"
-			>
-				<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-			</svg>
-		</button>
-
-		{#if isMobileToolsExpanded}
-			<div class="ml-4 flex flex-col gap-0.5 border-l border-graphite-700/50 pl-3">
-				{#each TOOLS_NAVIGATION_LINKS as toolLink (toolLink.href)}
-					<a
-						href={resolve(toolLink.href)}
-						class="rounded-lg px-3 py-2.5 text-sm transition-colors duration-200 {isActiveRoute(
-							toolLink.href
-						)
-							? 'text-pastel-300'
-							: 'text-graphite-400 hover:text-graphite-50'}"
-						onclick={closeMobileMenu}
-					>
-						{toolLink.label}
-					</a>
-				{/each}
-			</div>
-		{/if}
+		</a>
 	</div>
 </div>

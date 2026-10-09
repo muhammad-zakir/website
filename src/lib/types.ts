@@ -1,5 +1,3 @@
-import type { RouteId } from '$app/types';
-
 export interface SocialLink {
 	label: string;
 	value: string;
@@ -35,31 +33,4 @@ export interface Project {
 	description: string;
 	href: string;
 	technologies: string[];
-}
-
-export interface Tool {
-	title: string;
-	description: string;
-	href: RouteId;
-	icon: string;
-}
-
-export interface BillPerson {
-	id: string;
-	name: string;
-}
-
-export interface BillItem {
-	id: string;
-	name: string;
-	price: number;
-	assignedPersonIds: string[];
-}
-
-export interface BillState {
-	people: BillPerson[];
-	items: BillItem[];
-	taxPercentage: number;
-	servicePercentage: number;
-	currencyCode?: string;
 }

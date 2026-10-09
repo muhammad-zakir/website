@@ -52,13 +52,14 @@ reopened — and skip it otherwise.
 
 ## This repository
 
-zakir.id — a personal portfolio plus small free tools (`/tools`), built with SvelteKit,
+zakir.id — a personal portfolio, built with SvelteKit,
 TypeScript and Tailwind CSS v4, deployed to Cloudflare Workers through `wrangler` and
 `@sveltejs/adapter-cloudflare`. The README lists what's on the site.
 
 - **This site deploys to production.** Anything merged into `main` ships.
-- **Tool state lives in the URL** (the Split Bill calculator encodes it for sharing). Keep URLs
-  that are already out there decoding the same way.
+- **The tools moved to tools.itrium.id.** `_redirects` sends the old `/tools` addresses there;
+  keep it, because shared Split Bill links still point at zakir.id (the bill is in the `#data=`
+  part, which a redirect keeps).
 - **Brand colours:** graphite `#2B2B2B` and pastel pink `#FEBFCA`, minimalist.
 
 ### Commands
