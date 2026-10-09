@@ -1,15 +1,15 @@
 # zakir.id
 
-Personal portfolio and tools site for Muhammad Zakir — Full Stack Engineer.
+Personal portfolio for Muhammad Zakir — Full Stack Engineer.
 
 Live at [zakir.id](https://zakir.id).
 
 ## What's here
 
 - **Portfolio** — hero, about, skills, and experience sections.
-- **Tools** ([`/tools`](https://zakir.id/tools)) — small free utilities:
-  - **WhatsApp Click-to-Chat generator** — builds a `wa.me` link from a country code and phone number.
-  - **Split Bill Calculator** — splits items, tax, and service charge across a group, with shareable state encoded in the URL.
+- **Tools** — the small free utilities (WhatsApp click-to-chat, split bill) moved to
+  [tools.itrium.id](https://tools.itrium.id). Their old addresses here redirect there, shared
+  Split Bill links included: see [`_redirects`](_redirects).
 - **Contact** — links to email, LinkedIn, and GitHub.
 
 ## Stack

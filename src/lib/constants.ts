@@ -1,4 +1,4 @@
-import type { SocialLink, SkillCategory, Experience, Education, Project, Tool } from './types';
+import type { SocialLink, SkillCategory, Experience, Education, Project } from './types';
 
 /* ─── Site Metadata ─── */
 export const SITE_NAME = 'Zakir';
@@ -253,30 +253,11 @@ export const PROJECTS: Project[] = [
 ];
 
 /* ─── Tools ─── */
-export const TOOLS: Tool[] = [
-	{
-		title: 'WhatsApp Click-to-Chat',
-		description:
-			'Generate a WhatsApp click-to-chat link from any phone number. Auto-strips non-numeric characters and formats to international format.',
-		href: '/tools/whatsapp-click-to-chat',
-		icon: '💬'
-	},
-	{
-		title: 'Split Bill Calculator',
-		description:
-			'Split a bill among friends with per-item tagging, tax, and service charge. Save and share via URL.',
-		href: '/tools/split-bill',
-		icon: '🧾'
-	}
-];
+/** The tools moved to Itrium's site: zakir.id/tools/<name> redirects to <name> there. */
+export const TOOLS_URL = 'https://tools.itrium.id';
 
 /* ─── Navigation ─── */
 export const NAVIGATION_LINKS = [
 	{ label: 'Home', href: '/' },
 	{ label: 'Contact', href: '/contact' }
 ] as const;
-
-export const TOOLS_NAVIGATION_LINKS = TOOLS.map((tool) => ({
-	label: tool.title,
-	href: tool.href
-}));

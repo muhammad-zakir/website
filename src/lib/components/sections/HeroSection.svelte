@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
+	import { TOOLS_URL } from '#lib/constants.js';
 	const technologyPills = ['TypeScript', 'NestJS', 'Next.js', 'SvelteKit', 'PHP', 'Kubernetes'];
 </script>
 
@@ -69,7 +70,8 @@
 				</svg>
 			</a>
 			<a
-				href={resolve('/tools')}
+				href={TOOLS_URL}
+				rel="external"
 				class="inline-flex items-center gap-2 rounded-full border border-graphite-600 bg-graphite-700/40 px-6 py-2.5 text-sm font-medium text-graphite-200 backdrop-blur-sm transition-all duration-300 hover:border-pastel-300/30 hover:text-pastel-300"
 			>
 				Explore tools
