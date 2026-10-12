@@ -4,7 +4,7 @@ import type { SocialLink, SkillCategory, Experience, Education, Project } from '
 export const SITE_NAME = 'Zakir';
 export const SITE_TITLE = 'Zakir — Full Stack Engineer';
 export const SITE_DESCRIPTION =
-	'Personal portfolio and tools by Muhammad Zakir — Full Stack Engineer with 8+ years of experience building scalable backend systems and full-stack applications.';
+	'Personal portfolio of Muhammad Zakir — Full Stack Engineer with 8+ years of experience building scalable backend systems and full-stack applications.';
 export const SITE_URL = 'https://zakir.id';
 export const SITE_AUTHOR = 'Muhammad Zakir';
 
@@ -251,11 +251,6 @@ export const PROJECTS: Project[] = [
 		technologies: ['GitHub Actions', 'Markdown']
 	}
 ];
-
-/* ─── Tools ─── */
-/** The tools moved to Itrium's site: zakir.id/tools/<name> redirects to <name> there. */
-export const TOOLS_URL = 'https://tools.itrium.id';
-
 /* ─── Navigation ─── */
 export const NAVIGATION_LINKS = [
 	{ label: 'Home', href: '/' },

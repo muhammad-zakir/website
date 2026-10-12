@@ -7,9 +7,10 @@ Live at [zakir.id](https://zakir.id).
 ## What's here
 
 - **Portfolio** — hero, about, skills, and experience sections.
-- **Tools** — the small free utilities (WhatsApp click-to-chat, split bill) moved to
-  [tools.itrium.id](https://tools.itrium.id). Their old addresses here redirect there, shared
-  Split Bill links included: see [`_redirects`](_redirects).
+- **Tools** — none here any more. The small free utilities (WhatsApp click-to-chat, split
+  bill) live at [tools.itrium.id](https://tools.itrium.id), and the site no longer links to them.
+  Their old addresses here still redirect there, shared Split Bill links included: see
+  [`_redirects`](_redirects).
 - **Contact** — links to email, LinkedIn, and GitHub.
 
 ## Stack
