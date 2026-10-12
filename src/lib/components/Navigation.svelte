@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
-	import { NAVIGATION_LINKS, TOOLS_URL } from '#lib/constants.js';
+	import { NAVIGATION_LINKS } from '#lib/constants.js';
 
 	let isMobileMenuOpen = $state(false);
 	let previousScrollY = $state(0);
@@ -88,14 +88,6 @@
 						{link.label}
 					</a>
 				{/each}
-
-				<a
-					href={TOOLS_URL}
-					rel="external"
-					class="rounded-lg px-3 py-2 text-sm font-medium text-graphite-300 transition-colors duration-200 hover:text-graphite-50"
-				>
-					Tools
-				</a>
 			</div>
 
 			<!-- Mobile Hamburger -->
@@ -172,14 +164,5 @@
 				{link.label}
 			</a>
 		{/each}
-
-		<a
-			href={TOOLS_URL}
-			rel="external"
-			class="rounded-lg px-4 py-3 text-base font-medium text-graphite-300 transition-colors duration-200 hover:bg-graphite-700/50 hover:text-graphite-50"
-			onclick={closeMobileMenu}
-		>
-			Tools
-		</a>
 	</div>
 </div>
