@@ -1,8 +1,9 @@
-# The tools moved to tools.itrium.id. A shared Split Bill link keeps its bill: the bill is in the
-# part of the address after the "#", and browsers carry that part through a redirect.
-/tools https://tools.itrium.id/ 301
-/tools/ https://tools.itrium.id/ 301
-/tools/whatsapp-click-to-chat https://tools.itrium.id/whatsapp-click-to-chat 301
-/tools/whatsapp-click-to-chat/ https://tools.itrium.id/whatsapp-click-to-chat 301
-/tools/split-bill https://tools.itrium.id/split-bill 301
-/tools/split-bill/ https://tools.itrium.id/split-bill 301
+# The tools moved to Itrium's Flint, at flint.itrium.id (tools.itrium.id, where they went first,
+# is gone). A shared Split Bill link keeps its bill: the bill is in the part of the address after
+# the "#", and browsers carry that part through a redirect.
+/tools https://flint.itrium.id/ 301
+/tools/ https://flint.itrium.id/ 301
+/tools/whatsapp-click-to-chat https://flint.itrium.id/whatsapp-click-to-chat 301
+/tools/whatsapp-click-to-chat/ https://flint.itrium.id/whatsapp-click-to-chat 301
+/tools/split-bill https://flint.itrium.id/split-bill 301
+/tools/split-bill/ https://flint.itrium.id/split-bill 301

@@ -58,9 +58,9 @@ TypeScript and Tailwind CSS v4, deployed to Cloudflare Workers through `wrangler
 
 - **This site deploys to production.** Anything merged into `main` ships.
 - **Cloudflare must not add its analytics.** `_headers` sends `Cache-Control: … no-transform` on every page, which makes Cloudflare leave pages unchanged. Without it, Cloudflare's Web Analytics (on by default for sites it proxies) adds its script. The cost is that Cloudflare also stops compressing pages, so the home page is sent at its full size. `src/headers.test.ts` guards it.
-- **The tools moved to tools.itrium.id.** `_redirects` sends the old `/tools` addresses there;
-  keep it, because shared Split Bill links still point at zakir.id (the bill is in the `#data=`
-  part, which a redirect keeps).
+- **The tools moved to Flint, at flint.itrium.id.** `_redirects` sends the old `/tools` addresses
+  straight there (tools.itrium.id, their first home, is gone); keep it, because shared Split Bill
+  links still point at zakir.id (the bill is in the `#data=` part, which a redirect keeps).
 - **Brand colours:** graphite `#2B2B2B` and pastel pink `#FEBFCA`, minimalist.
 
 ### Commands
